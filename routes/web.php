@@ -30,10 +30,11 @@ Route::get('/', function () {
     return view('app.index');
 });
 
-/**
+/*
 |--------------------------------------------------------------------------
 | Auth Routes
 |--------------------------------------------------------------------------
+| Rewrite basic auth routes
 */
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

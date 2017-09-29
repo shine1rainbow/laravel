@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$this->registerPolicies();
-		$this->_configPassport();
-		$this->_registerMastiffUserProvider();
+        $this->registerPolicies();
+        $this->_configPassport();
+        $this->_registerMastiffUserProvider();
     }
 
     /**
@@ -45,15 +45,15 @@ class AuthServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
     }
 
-	/**
-	 * Register UserProvider
-	 *
-	 * @return void
-	 */
-	private function _registerMastiffUserProvider()
-	{
-		Auth::provider('mastiff', function ($app, array $config) {
-			return new MastiffUserProvider(new BcryptHasher(), config('auth.providers.mastiff.model'));
-		});
-	}
+    /**
+     * Register UserProvider
+     *
+     * @return void
+     */
+    private function _registerMastiffUserProvider()
+    {
+        Auth::provider('mastiff', function ($app, array $config) {
+            return new MastiffUserProvider(new BcryptHasher(), config('auth.providers.mastiff.model'));
+        });
+    }
 }
