@@ -1,20 +1,24 @@
+/*
+|--------------------------------------------------------------------------
+| Init js library
+|--------------------------------------------------------------------------
+|
+| First we will load all of this project's JavaScript dependencies which
+| includes Vue and other libraries. It is a great starting point when
+| building robust, powerful web applications using Vue and Laravel.
+|
+*/
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-//require('./bootstrap');
+require('./bootstrap');
 
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import Http from './utils/fetch';
 import VueI18n from 'vue-i18n';
-import router from './router/index.js';
-import store from './store/index.js';
-import locales from './lang/index.js';
+import router from './router/index';
+import store from './store/index';
+import locales from './lang/index';
 import App from './App';
 
 Vue.use(Http)
@@ -39,8 +43,7 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-    i18n
-    ,
+    i18n,
     template: '<App/>',
-    components: { App }
+    components: {App}
 });

@@ -1,24 +1,54 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import {encryptData, decryptData} from './../utils/encrypt'
 
 Vue.use(Router)
-
-const Foo = { template: '<div><h3>foo</h3></div>' }
-const Bar = { template: '<div><h3>bar</h3></div>' }
 
 export default new Router({
     routes: [
         {
-            path: '/foo',
-            component: Foo,
+            path: '/',
+            redirect: '/dashboard'
         },
         {
-            path: '/bar',
-            component: Bar,
+            path: '/dashboard',
+            beforeEnter: requireAuth,
+            component: resolve => require(['../pages/Dashboard.vue'], resolve)
+        },
+        {
+            path: '/login',
+            component: resolve => require(['../pages/auth/Login.vue'], resolve)
         },
         {
             path: '/demo',
             component: resolve => require(['../components/Example.vue'], resolve)
         },
+        {
+            path: '/404',
+            component: resolve => require(['../pages/errors/404.vue'], resolve)
+        },
+        {
+            path: '/503',
+            component: resolve => require(['../pages/errors/503.vue'], resolve)
+        },
+        {
+            path: '*',
+            redirect: '/404'
+        }
     ]
 })
+
+/**
+ * Auth Route
+ */
+function requireAuth(to, from, next) {
+
+    let encryptAuthUser = window.localStorage.getItem('authUser')
+    let decryptedAuthUser = decryptData(encryptAuthUser);
+
+    if (decryptedAuthUser && decryptedAuthUser.access_token) {
+        next()
+    } else {
+        next('/login')
+    }
+}

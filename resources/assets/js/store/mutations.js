@@ -8,7 +8,7 @@
 // this => store
 
 export default {
-    'CHANGE_LANGUAGE' (state, payload) {
+    'CHANGE_LANGUAGE'(state, payload) {
         state.language = payload
     }
 }

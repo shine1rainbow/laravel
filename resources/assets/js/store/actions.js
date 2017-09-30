@@ -7,7 +7,7 @@
 
 export default {
     //demo
-    changeLanguage (context, payload) {
+    changeLanguage(context, payload) {
         context.commit('CHANGE_LANGUAGE', payload)
     }
 }

@@ -1,4 +1,4 @@
-webpackJsonp([0],{
+webpackJsonp([7],{
 
 /***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
@@ -187,6 +187,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         onSubmitForm: function onSubmitForm(e) {
+            var _this = this;
 
             // prevent the default action
             e.preventDefault();
@@ -195,8 +196,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var postData = {
                 grant_type: 'password',
-                client_id: __WEBPACK_IMPORTED_MODULE_2__env__["systemConfig"].clientId,
-                client_secret: __WEBPACK_IMPORTED_MODULE_2__env__["systemConfig"].clientSecret,
+                client_id: clientId,
+                client_secret: clientSecret,
                 username: this.newFormData.username,
                 password: this.newFormData.password,
                 scope: ''
@@ -211,6 +212,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.formData = { username: '', password: '' };
 
             // send post ajax request
+            this.$http.post(loginUrl, postData).then(function (response) {
+
+                if (response.status == 200) {
+
+                    authUser.access_token = response.body.access_token;
+                    authUser.refresh_token = response.body.refresh_token;
+
+                    var encryptAuthUser = Object(__WEBPACK_IMPORTED_MODULE_3__utils_encrypt__["b" /* encryptData */])(authUser);
+
+                    window.localStorage.setItem('authUser', encryptAuthUser);
+
+                    _this.$http.get(userUrl, {
+                        headers: getHeader()
+                    }).then(function (response) {
+
+                        if (response.body.code == '200') {
+
+                            var resUserInfo = response.body.data.userInfo;
+                            var resRoleInfo = response.body.data.roleInfo;
+                            var permissionInfo = response.body.data.permissionInfo;
+                            var roleLength = resRoleInfo.length;
+                            var roles = [];
+
+                            for (var i = 0; i < roleLength; i++) {
+                                roles.push(resRoleInfo[i]['name']);
+                            }
+
+                            authUser.email = resUserInfo.email;
+                            authUser.name = resUserInfo.name;
+                            authUser.roles = roles;
+
+                            var encryptAuthUser = Object(__WEBPACK_IMPORTED_MODULE_3__utils_encrypt__["b" /* encryptData */])(authUser);
+                            var encryptMenus = Object(__WEBPACK_IMPORTED_MODULE_3__utils_encrypt__["b" /* encryptData */])(permissionInfo);
+                            var encryptVersion = Object(__WEBPACK_IMPORTED_MODULE_3__utils_encrypt__["b" /* encryptData */])(systemVersion);
+
+                            window.localStorage.setItem('authUser', encryptAuthUser);
+                            window.localStorage.setItem('menus', encryptMenus);
+                            window.localStorage.setItem('version', encryptVersion);
+                            _this.$router.push('/dashboard');
+                        } else {
+
+                            _this.$message.error(_this.$i18n.t("common.loginSuccess") + response.body.msg);
+                        }
+                    }, function (response) {
+
+                        _this.$message.error(_this.$i18n.t("common.loginFailed"));
+                    });
+                }
+            }, function (response) {
+
+                _this.$message.error(_this.$i18n.t("auth.loginError"));
+            });
 
             this.submitted = true;
         }
@@ -413,15 +466,16 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
 /*
 |--------------------------------------------------------------------------
 | Api list
 |--------------------------------------------------------------------------
 |
 */
-
-var ApiList = {};
+var ApiList = {
+    loginUrl: '',
+    userUrl: ''
+};
 
 /* unused harmony default export */ var _unused_webpack_default_export = (ApiList);
 

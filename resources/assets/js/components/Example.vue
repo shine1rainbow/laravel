@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import { http } from './../utils/fetch'
+    import {http} from './../utils/fetch'
     import Vue from 'vue';
 
     export default {
@@ -32,7 +32,7 @@
         },
 
         computed: {
-            formatLanguage () {
+            formatLanguage() {
                 return this.$store.getters.formatLanguage
             }
         },
@@ -42,21 +42,21 @@
         },
 
         methods: {
-            fetch () {
+            fetch() {
                 //demo of http request
-                http({ url: '/test', method: 'get' }).then(response => {
-				 console.log(response.data);
-				}).catch(err => {
-				  console.log(err)
-				})
+                http({url: '/test', method: 'get'}).then(response => {
+                    console.log(response.data);
+                }).catch(err => {
+                    console.log(err)
+                })
             },
 
-            updateLanguage (language) {
+            updateLanguage(language) {
                 this.$store.commit('CHANGE_LANGUAGE', language);
                 console.log(this.$store.state.language);
             },
 
-            change () {
+            change() {
                 console.log(this.$store.state.language);
                 this.$store.dispatch('changeLanguage', 'change language')
                 console.log(this.$store.state.language);

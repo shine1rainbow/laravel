@@ -1,3 +1,4 @@
+
 /*
 |--------------------------------------------------------------------------
 | System config
@@ -10,6 +11,7 @@
 |
 | the client use password mode to auth. So the password_client column should be true (1).
 */
+
 const systemConfig = {
     'baseUrl': '/',
     'clientId': '',
