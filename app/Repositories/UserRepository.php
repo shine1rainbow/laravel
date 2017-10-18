@@ -6,6 +6,8 @@ use App\Tables\User;
 
 class UserRepository
 {
+    use BaseRepository;
+
     /**
      * User Model
      *
