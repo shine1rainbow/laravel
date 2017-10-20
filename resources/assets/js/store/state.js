@@ -1,3 +1,3 @@
 export default {
-    language: 'with english',
+    language: 'zh_cn',
 }

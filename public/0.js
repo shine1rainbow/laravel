@@ -1,18 +1,20 @@
 webpackJsonp([0],{
 
-/***/ 144:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(155)
+  __webpack_require__(183)
 }
-var normalizeComponent = __webpack_require__(34)
+var normalizeComponent = __webpack_require__(47)
 /* script */
-var __vue_script__ = __webpack_require__(157)
+var __vue_script__ = __webpack_require__(185)
 /* template */
-var __vue_template__ = __webpack_require__(190)
+var __vue_template__ = __webpack_require__(193)
+/* template functional */
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -22,13 +24,13 @@ var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __vue_script__,
   __vue_template__,
+  __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 Component.options.__file = "resources/assets/js/pages/auth/Login.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -40,7 +42,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-3cdc399f", Component.options)
   } else {
     hotAPI.reload("data-v-3cdc399f", Component.options)
-  }
+' + '  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -51,23 +53,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 155:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(156);
+var content = __webpack_require__(184);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(130)("88d3fe72", content, false);
+var update = __webpack_require__(48)("2e1c283f", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3cdc399f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3cdc399f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3cdc399f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Login.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3cdc399f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Login.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -78,32 +80,37 @@ if(false) {
 
 /***/ }),
 
-/***/ 156:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(15)(undefined);
+exports = module.exports = __webpack_require__(25)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n#form-container[data-v-3cdc399f] {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n#login-title[data-v-3cdc399f] {\n    text-align: center;\n    margin-bottom: 20px;\n\n    color: #fff;\n}\n#login-form[data-v-3cdc399f] {\n    z-index: 1;\n    position: relative;\n    top: 15%;\n    margin-top: 15%;\n    width: 340px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    margin: auto;\n    padding: 30px 40px;\n\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.1);\n}\n#login-form input[data-v-3cdc399f] {\n    border-radius: 5px;\n}\n#input-password[data-v-3cdc399f] {\n    margin: 8px 0 15px;\n\n    border: solid 1px rgba(255, 255, 255, 0.3);\n}\n#login-button[data-v-3cdc399f] {\n    width: 100%;\n    margin: 0 auto 20px;\n}\n#login-button[data-v-3cdc399f]:focus {\n    border: transparent;\n}\n#forget-password-link[data-v-3cdc399f]:hover {\n    color: #0dd9fb;\n}\n#company-link[data-v-3cdc399f] {\n    font-size: 12px;\n}\n.form-group a[data-v-3cdc399f] {\n    color: #fff;\n    text-decoration: none;\n}\n.form-group button[data-v-3cdc399f] {\n    border: none;\n}\n", ""]);
+exports.push([module.i, "\n#form-container[data-v-3cdc399f] {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n#login-title[data-v-3cdc399f] {\n    text-align: center;\n    margin-bottom: 20px;\n\n    color: #fff;\n}\n#login-form[data-v-3cdc399f] {\n    z-index: 1;\n    position: relative;\n    top: 15%;\n    margin-top: 15%;\n    width: 340px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    margin: auto;\n    padding: 30px 40px;\n\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.1);\n}\n#login-form input[data-v-3cdc399f] {\n    border-radius: 5px;\n}\n#input-password[data-v-3cdc399f] {\n    margin: 8px 0 15px;\n\n    border: solid 1px rgba(255, 255, 255, 0.3);\n}\n#login-button[data-v-3cdc399f] {\n    width: 100%;\n    margin: 0 auto 20px;\n}\n#login-button[data-v-3cdc399f]:focus {\n    border: transparent;\n}\n#forget-password-link[data-v-3cdc399f]:hover {\n    color: #0dd9fb;\n}\n#company-link[data-v-3cdc399f] {\n    font-size: 12px;\n}\n.form-group a[data-v-3cdc399f] {\n    color: #fff;\n    text-decoration: none;\n}\n.form-group button[data-v-3cdc399f] {\n    border: none;\n}\n#set-language[data-v-3cdc399f] {\n    z-index: 1;\n    position: absolute;\n    top: 10px;\n    right: 50px;\n    width: 30px;\n    margin: auto;\n    padding: 10px 10px;\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 157:
+/***/ 185:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_ParticleBackground__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_ParticleBackground__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_ParticleBackground___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_background_ParticleBackground__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__env__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_encrypt__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_encrypt__ = __webpack_require__(50);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -186,6 +193,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
 
+        setLanguage: function setLanguage(lang) {
+            this.$store.dispatch('setLanguage', lang);
+        },
+
         onSubmitForm: function onSubmitForm(e) {
 
             // prevent the default action
@@ -219,19 +230,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 158:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(159)
+  __webpack_require__(187)
 }
-var normalizeComponent = __webpack_require__(34)
+var normalizeComponent = __webpack_require__(47)
 /* script */
-var __vue_script__ = __webpack_require__(161)
+var __vue_script__ = __webpack_require__(189)
 /* template */
-var __vue_template__ = __webpack_require__(163)
+var __vue_template__ = __webpack_require__(191)
+/* template functional */
+  var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -241,13 +254,13 @@ var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __vue_script__,
   __vue_template__,
+  __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 Component.options.__file = "resources/assets/js/components/background/ParticleBackground.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ParticleBackground.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -259,7 +272,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-55b5628e", Component.options)
   } else {
     hotAPI.reload("data-v-55b5628e", Component.options)
-  }
+' + '  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -270,23 +283,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 159:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(160);
+var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(130)("c5ec0954", content, false);
+var update = __webpack_require__(48)("f8c86144", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55b5628e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ParticleBackground.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55b5628e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ParticleBackground.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55b5628e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ParticleBackground.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55b5628e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ParticleBackground.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -297,10 +310,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 160:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(15)(undefined);
+exports = module.exports = __webpack_require__(25)(undefined);
 // imports
 
 
@@ -312,12 +325,12 @@ exports.push([module.i, "\n#particle-background[data-v-55b5628e] {\n    position
 
 /***/ }),
 
-/***/ 161:
+/***/ 189:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jparticles__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jparticles__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jparticles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jparticles__);
 //
 //
@@ -359,7 +372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 162:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -372,7 +385,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ 163:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -403,13 +416,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-55b5628e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-55b5628e", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 164:
+/***/ 192:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -427,7 +440,7 @@ var ApiList = {};
 
 /***/ }),
 
-/***/ 190:
+/***/ 193:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -440,8 +453,36 @@ var render = function() {
     [
       _c("particle-background"),
       _vm._v(" "),
+      _c("div", { attrs: { id: "set-language" } }, [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.setLanguage("zh_cn")
+              }
+            }
+          },
+          [_vm._v("cn")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.setLanguage("en")
+              }
+            }
+          },
+          [_vm._v("en")]
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { attrs: { id: "login-form" } }, [
-        _vm._m(0),
+        _c("div", { attrs: { id: "login-title" } }, [
+          _c("h3", [_vm._v(_vm._s(_vm.$t("auth.loginTitle")))])
+        ]),
         _vm._v(" "),
         _c("form", { staticClass: "form" }, [
           _c("input", {
@@ -454,14 +495,18 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text", name: "username", placeholder: "username" },
+            attrs: {
+              type: "text",
+              name: "username",
+              placeholder: _vm.$t("auth.loginUsername")
+            },
             domProps: { value: _vm.newFormData.username },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.newFormData.username = $event.target.value
+                _vm.$set(_vm.newFormData, "username", $event.target.value)
               }
             }
           }),
@@ -480,7 +525,7 @@ var render = function() {
               type: "password",
               id: "input-password",
               name: "password",
-              placeholder: "password"
+              placeholder: _vm.$t("auth.loginPassword")
             },
             domProps: { value: _vm.newFormData.password },
             on: {
@@ -488,7 +533,7 @@ var render = function() {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.newFormData.password = $event.target.value
+                _vm.$set(_vm.newFormData, "password", $event.target.value)
               }
             }
           }),
@@ -498,7 +543,7 @@ var render = function() {
             { staticClass: "form-group" },
             [
               _c("router-link", { attrs: { to: "password/email" } }, [
-                _vm._v(" forget password ?")
+                _vm._v(" " + _vm._s(_vm.$t("auth.loginForgetPasswd")))
               ])
             ],
             1
@@ -517,50 +562,37 @@ var render = function() {
               false
             ),
             [
-              _vm._v("\n                Login "),
+              _vm._v(
+                "\n                " + _vm._s(_vm.$t("auth.loginSubmit")) + " "
+              ),
               _c("i", { staticClass: "fa fa-sign-in" })
             ]
           ),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "a",
+              { attrs: { id: "company-link", href: "http://www.mastiff.com" } },
+              [
+                _c("p", { staticClass: "text-center" }, [
+                  _vm._v(" " + _vm._s(_vm.$t("auth.loginCompany")) + " ")
+                ])
+              ]
+            )
+          ])
         ])
       ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "login-title" } }, [
-      _c("h3", [_vm._v("Mastiff")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "a",
-        { attrs: { id: "company-link", href: "http://www.mastiff.com" } },
-        [
-          _c("p", { staticClass: "text-center" }, [
-            _vm._v("Mastiff Pty Co.,Ltd. 2015©")
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3cdc399f", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3cdc399f", module.exports)
   }
 }
 

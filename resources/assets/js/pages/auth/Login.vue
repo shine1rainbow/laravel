@@ -2,35 +2,40 @@
     <div id="form-container">
         <particle-background></particle-background>
 
+        <div id="set-language">
+            <button @click="setLanguage('zh_cn')">cn</button>
+            <button @click="setLanguage('en')">en</button>
+        </div>
+
         <div id="login-form">
 
             <div id="login-title">
-                <h3>Mastiff</h3>
+                <h3>{{ $t('auth.loginTitle') }}</h3>
             </div>
 
             <form class="form">
-                <input type="text" class="form-control" name="username" placeholder="username"
+                <input type="text" class="form-control" name="username" :placeholder="$t('auth.loginUsername')"
                        v-model="newFormData.username"
                 >
 
-                <input type="password" class="form-control" id="input-password" name="password" placeholder="password"
+                <input type="password" class="form-control" id="input-password" name="password" :placeholder="$t('auth.loginPassword')"
                        v-model="newFormData.password"
                 >
 
                 <div class="form-group">
-                    <router-link to="password/email"> forget password ?</router-link>
+                    <router-link to="password/email"> {{ $t('auth.loginForgetPasswd') }}</router-link>
                 </div>
 
                 <button type="submit" class="btn btn-primary" id="login-button"
                         v-bind="{'disabled': disabled}"
                         v-on:click="onSubmitForm"
                 >
-                    Login <i class="fa fa-sign-in"></i>
+                    {{ $t('auth.loginSubmit') }} <i class="fa fa-sign-in"></i>
                 </button>
 
                 <div class="form-group">
                     <a id="company-link" href="http://www.mastiff.com">
-                        <p class="text-center">Mastiff Pty Co.,Ltd. 2015©</p>
+                        <p class="text-center"> {{ $t('auth.loginCompany') }} </p>
                     </a>
                 </div>
             </form>
@@ -79,6 +84,10 @@
         },
 
         methods: {
+
+            setLanguage: function(lang){
+                    this.$store.dispatch('setLanguage', lang)
+            },
 
             onSubmitForm: function (e) {
 
@@ -179,5 +188,15 @@
 
     .form-group button {
         border: none;
+    }
+    #set-language {
+        z-index: 1;
+        position: absolute;
+        top: 10px;
+        right: 50px;
+        width: 30px;
+        margin: auto;
+        padding: 10px 10px;
+        display: inline-block;
     }
 </style>

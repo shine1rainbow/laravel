@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,10 +11,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 /*
 |--------------------------------------------------------------------------
 | API Routes Version 1.0(current)
@@ -24,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 | tip: In local remove the middleware auth:api, but when app online your
 | should never missing it.
 */
-Route::group(['prefix' => 'v2', 'namespace' => 'Api\V1'], function () {
+Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 });
 
 /*

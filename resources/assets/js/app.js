@@ -15,31 +15,23 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import Http from './utils/fetch';
-import VueI18n from 'vue-i18n';
 import router from './router/index';
 import store from './store/index';
-import locales from './lang/index';
+import i18n from './lang/index';
 import App from './App';
 
 Vue.use(Http)
 Vue.use(ElementUI)
-Vue.use(VueI18n)
 
 /* Require Vue Componments */
 //Vue.component('example', require('./components/Example.vue'));
-
-/* Create VueI18n instance with options: {zh_cn, en} */
-const i18n = new VueI18n({
-    locale: 'zh_cn',
-    messages: locales
-});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const app = new Vue({
+export const app = new Vue({
     el: '#app',
     router,
     store,
@@ -47,3 +39,7 @@ const app = new Vue({
     template: '<App/>',
     components: {App}
 });
+
+/* Set vue instance and vuex store as window variable, so we can ccess your i18n in your chrome */
+//window['vue'] = app
+//window.store = store

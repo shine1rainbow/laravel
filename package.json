@@ -25,7 +25,7 @@
     "jparticles": "^2.0.1",
     "tween.js": "^16.6.0",
     "vue-i18n": "^7.3.0",
-    "vue-router": "^2.7.0",
-    "vuex": "^2.4.0"
+    "vue-router": "^2.8.1",
+    "vuex": "^2.5.0"
   }
 }

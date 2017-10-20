@@ -4,11 +4,15 @@
 |--------------------------------------------------------------------------
 |
 */
+import * as types from './mutation-types'
+import { app } from './../app'
 
 // this => store
 
 export default {
-    'CHANGE_LANGUAGE'(state, payload) {
-        state.language = payload
+
+    [types.SET_LANGUAGE](state, payload) {
+        app.$i18n.locale = payload
     }
+
 }

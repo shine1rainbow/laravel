@@ -4,10 +4,12 @@
 |--------------------------------------------------------------------------
 |
 */
+import * as types from './mutation-types'
 
 export default {
-    //demo
-    changeLanguage(context, payload) {
-        context.commit('CHANGE_LANGUAGE', payload)
+
+    setLanguage(context, payload) {
+        context.commit(types.SET_LANGUAGE, payload)
     }
+
 }
