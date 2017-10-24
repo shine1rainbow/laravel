@@ -7,8 +7,8 @@
 |
 */
 
-import {CryptoJS, AES, enc} from 'crypto-js'
-import {systemConfig} from './../env.js'
+import { CryptoJS, AES, enc } from 'crypto-js'
+import { systemConfig } from './../env.js'
 
 export function encryptData(str) {
     let encryptStr = AES.encrypt(JSON.stringify(str), systemConfig.encryptKey);

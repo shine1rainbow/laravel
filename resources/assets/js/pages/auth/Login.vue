@@ -46,8 +46,8 @@
 
 <script>
     import ParticleBackground from './../../components/background/ParticleBackground'
-    import {ApiList} from './../../config'
-    import {systemConfig} from './../../env'
+    import { ApiList } from './../../config'
+    import { systemConfig } from './../../env'
     import {encryptData, decryptData} from './../../utils/encrypt'
 
     export default {

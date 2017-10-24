@@ -6,7 +6,14 @@ import zh_cn from './zh_cn'
 
 Vue.use(VueI18n)
 
-const locale = 'zh_cn'
+let sessionStorageLocale = window.sessionStorage.getItem('locale')
+
+if (!sessionStorageLocale && typeof(sessionStorageLocale) != "undefined" && sessionStorageLocale != 0) {
+    sessionStorageLocale = 'zh_cn'
+}
+
+const locale = sessionStorageLocale
+//const locale = 'zh_cn'
 
 const messages = {
     zh_cn,

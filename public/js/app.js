@@ -46680,6 +46680,10 @@ function install(Vue) {
 
 
 function encryptData(str) {
+    if (!str && typeof str != "undefined" && str != 0) {
+        return 'zh_cn';
+    }
+
     var encryptStr = __WEBPACK_IMPORTED_MODULE_0_crypto_js__["AES"].encrypt(JSON.stringify(str), __WEBPACK_IMPORTED_MODULE_1__env_js__["systemConfig"].encryptKey);
 
     return encryptStr;
@@ -93292,6 +93296,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["a"] = (_defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* SET_LANGUAGE */], function (state, payload) {
     __WEBPACK_IMPORTED_MODULE_1__app__["app"].$i18n.locale = payload;
+    window.sessionStorage.setItem('locale', payload);
 }));
 
 /***/ }),
@@ -93381,7 +93386,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_i18n__["a" /* default */]);
 
-var locale = 'zh_cn';
+var sessionStorageLocale = window.sessionStorage.getItem('locale');
+
+if (!sessionStorageLocale && typeof sessionStorageLocale != "undefined" && sessionStorageLocale != 0) {
+    sessionStorageLocale = 'zh_cn';
+}
+
+var locale = sessionStorageLocale;
+//const locale = 'zh_cn'
 
 var messages = {
     zh_cn: __WEBPACK_IMPORTED_MODULE_3__zh_cn__["a" /* default */],
