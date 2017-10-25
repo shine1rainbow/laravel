@@ -34,8 +34,8 @@
                 </button>
 
                 <div class="form-group">
-                    <a id="company-link" href="http://www.mastiff.com">
-                        <p class="text-center"> {{ $t('auth.loginCompany') }} </p>
+                    <a id="company-link" :href="$t('auth.loginCompanyLink')">
+                        <p class="text-center"> {{ $t('auth.loginCompanyName') }} </p>
                     </a>
                 </div>
             </form>
@@ -48,7 +48,7 @@
     import ParticleBackground from './../../components/background/ParticleBackground'
     import { ApiList } from './../../config'
     import { systemConfig } from './../../env'
-    import {encryptData, decryptData} from './../../utils/encrypt'
+    import { encryptData, decryptData } from './../../utils/encrypt'
 
     export default {
         components: {

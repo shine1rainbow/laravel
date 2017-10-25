@@ -4,5 +4,6 @@ export default {
     'loginPassword': '密码',
     'loginForgetPasswd': '忘记密码 ?',
     'loginSubmit': '登录',
-    'loginCompany': '香香香公司',
+    'loginCompanyName': '香香香公司',
+    'loginCompanyLink': 'http://www.mastiff.com',
 }
