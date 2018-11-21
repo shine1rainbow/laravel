@@ -1,0 +1,57 @@
+[
+    {
+        "id": "1",
+        "name": "/dashboard",
+        "display_en_name": "商场统计",
+        "display_zh_name": "商场统计",
+        "icon": "fa-dashboard",
+        "is_menu": 1,
+        "pid": "0" ,
+        "order": "1" 
+    }, {
+        "id": "2",
+        "name": "/mall",
+        "display_en_name": "商场明细",
+        "display_zh_name": "商场明细",
+        "icon": "fa-database",
+        "is_menu": 1,
+        "pid": "0",
+        "order": "2" 
+    }, {
+        "id": "3",
+        "name": "/floor",
+        "display_en_name": "楼层统计",
+        "display_zh_name": "楼层统计",
+        "icon": "fa-cubes",
+        "is_menu": 1,
+        "pid": "0",
+        "order": "3" 
+    }, {
+        "id": "4",
+        "name": "/area-flow",
+        "display_en_name": "区域统计",
+        "display_zh_name": "区域统计",
+        "icon": "fa-area-chart",
+        "is_menu": 1,
+        "pid": "0",
+        "order": "4" 
+    }, {
+        "id": "5",
+        "name": "#",
+        "display_en_name": "店铺统计",
+        "display_zh_name": "店铺统计",
+        "icon": "fa-bar-chart",
+        "is_menu": 1,
+        "pid": "0",
+        "order": "5" 
+    }, {
+        "id": "6",
+        "name": "/shop/history",
+        "display_en_name": "店铺历史",
+        "display_zh_name": "店铺历史",
+        "icon": "fa-circle-o",
+        "is_menu": 0,
+        "pid": "5",
+        "order": "6" 
+    }
+]

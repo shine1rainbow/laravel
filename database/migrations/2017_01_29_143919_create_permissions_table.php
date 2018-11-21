@@ -20,6 +20,7 @@ class CreatePermissionsTable extends Migration
             $table->string('display_zh_name')->comment('菜单中文名');
             $table->string('icon')->nullable()->comment('图标');
             $table->integer('pid')->default(0)->comment('父节点');
+            $table->boolean('is_menu')->default(1)->comment('是否菜单');
             $table->integer('order')->default(1)->comment('排序');
             $table->integer('status')->default(1)->comment('权限状态');
             $table->string('description')->nullable()->comment('权限描述');

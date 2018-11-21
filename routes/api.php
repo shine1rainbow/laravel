@@ -18,7 +18,26 @@
 | tip: In local remove the middleware auth:api, but when app online your
 | should never missing it.
 */
-Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
+Route::group(['prefix' => 'v1'], function () {
+
+	Route::group(['namespace' => 'Api\V1'], function () {
+	});
+
+	Route::group(['prefix' => 'backend', 'namespace' => 'Backend', 'middleware' => 'auth:api'], function () {
+
+		//用户管理
+		Route::group(['prefix' => 'user'], function () {
+			Route::get('info', 'UserController@info');
+			Route::get('permission', 'UserController@getPermissionByUserId');
+			Route::get('/', 'UserController@index');
+			Route::post('/', 'UserController@store');
+			Route::get('{id}', 'UserController@show');
+			Route::put('{id}', 'UserController@update');
+			Route::delete('{id}', 'UserController@destroy');
+		});
+
+	});
+
 });
 
 /*

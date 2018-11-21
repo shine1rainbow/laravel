@@ -10,8 +10,10 @@
 */
 
 import axios from 'axios'
-import {Notification} from 'element-ui'
-import {systemConfig} from './../env.js'
+import { Notification } from 'element-ui'
+import store from '../store'
+import systemConfig from './../env.js'
+import { decryptData } from './../utils/encrypt'
 
 /**
  * Create Axios
@@ -20,6 +22,7 @@ export const http = axios.create({
     baseURL: systemConfig.baseURL,
     timeout: 5000
 })
+
 
 //在实例创建后改变默认值
 //http.defaults.headers.common ['Authorization'] = AUTH_TOKEN;
@@ -35,6 +38,17 @@ http.defaults.headers.common = {
 };
 
 http.interceptors.request.use(config => {
+
+    //在请求前添加认证头
+    if (store.state.access_token != null) {
+        config.headers.authorization = "Bearer " + store.state.access_token;
+    } else {
+        let access_token = decryptData(window.localStorage.getItem("authUser")).access_token
+
+        if (access_token != 'undefined') {
+            config.headers.authorization = "Bearer " + access_token;
+        }
+    }
     // Do something before request is sent
     return config
 }, error => {

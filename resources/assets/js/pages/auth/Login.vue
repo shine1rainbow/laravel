@@ -3,8 +3,8 @@
         <particle-background></particle-background>
 
         <div id="set-language">
-            <button @click="setLanguage('zh_cn')">cn</button>
-            <button @click="setLanguage('en')">en</button>
+            <el-button type="primary" v-show="isShow" @click="setLanguage('zh_cn')" round>中文</el-button>
+            <el-button type="success" v-show="!isShow" @click="setLanguage('en')" round>English</el-button>
         </div>
 
         <div id="login-form">
@@ -46,8 +46,9 @@
 
 <script>
     import ParticleBackground from './../../components/background/ParticleBackground'
-    import { ApiList } from './../../config'
-    import { systemConfig } from './../../env'
+    import ApiList from './../../config'
+    import systemConfig from './../../env'
+    import { http } from './../../utils/fetch'
     import { encryptData, decryptData } from './../../utils/encrypt'
 
     export default {
@@ -64,6 +65,7 @@
                 submitted: false,
                 formDatas: [],
                 showError: false,
+                isShow: false,
             }
         },
 
@@ -71,6 +73,10 @@
 
             if (window.localStorage.getItem('authUser') !== null) {
                 this.$router.push('dashboard')
+            }
+
+            if (window.sessionStorage.getItem('locale') == 'en') {
+                this.isShow = true;
             }
         },
 
@@ -87,6 +93,7 @@
 
             setLanguage: function(lang){
                     this.$store.dispatch('setLanguage', lang)
+                    this.isShow = ! this.isShow
             },
 
             onSubmitForm: function (e) {
@@ -114,9 +121,62 @@
                 this.formData = {username: '', password: ''};
 
                 // send post ajax request
+                http({
+					url: ApiList.getTokenUrl, 
+					method: 'post',
+					data: postData
+				}).then(response => {
+                    if (response.status == 200) {
+                        
+						authUser.access_token = response.data.access_token
+						authUser.refresh_token = response.data.refresh_token
+
+                    	this.$store.dispatch('setAccessToken', response.data.access_token)
+
+						let encryptAuthUser = encryptData(authUser)
+
+						window.localStorage.setItem('authUser', encryptAuthUser)
+
+						http({
+							url: ApiList.getUserInfoUrl,
+						}).then(response => {                                                                
+																											 
+							if (response.data.code == '200') {                                               
+																											 
+								let resUserInfo = response.data.data.userInfo                                
+								let resRoleInfo = response.data.data.roleInfo                                
+								let roleLength = resRoleInfo.length                                          
+								let roles = []                                                               
+																											 
+								for (let i = 0; i < roleLength; i++) {                                       
+									roles.push(resRoleInfo[i]['name'])                                       
+								}                                                                            
+																											 
+								authUser.id = resUserInfo.id                                                 
+								authUser.email = resUserInfo.email                                           
+								authUser.name = resUserInfo.name                                             
+								authUser.roles = roles                                                       
+																											 
+								var encryptAuthUser = encryptData(authUser)                                  
+								var encryptVersion = encryptData(systemConfig.version);                             
+																											 
+								window.localStorage.setItem('authUser', encryptAuthUser)                     
+								window.localStorage.setItem('version', encryptVersion)                       
+								this.$router.push('/dashboard')                                        
+																											 
+							} else {                                                                         
+								this.$message.error(this.$i18n.t("common.loginSuccess") + response.body.msg);
+							}                                                                                
+						}, response => {                                                                     
+							this.$message.error(this.$i18n.t("common.loginFailed"));                         
+						})                                                                                   
+                    }
+
+                }).catch(err => {
+                    console.log(err)
+                })
 
                 this.submitted = true;
-
             }
         }
     }
@@ -193,10 +253,9 @@
         z-index: 1;
         position: absolute;
         top: 10px;
-        right: 50px;
+        right: 120px;
         width: 30px;
         margin: auto;
-        padding: 10px 10px;
         display: inline-block;
     }
 </style>

@@ -10,6 +10,9 @@ export default {
 
     setLanguage(context, payload) {
         context.commit(types.SET_LANGUAGE, payload)
-    }
+    },
 
+    setAccessToken(context, payload) {
+        context.commit(types.SET_ACCESS_TOKEN, payload)
+    }
 }

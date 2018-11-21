@@ -13,7 +13,16 @@ export default new Router({
         {
             path: '/dashboard',
             beforeEnter: requireAuth,
-            component: resolve => require(['../pages/Dashboard.vue'], resolve)
+            component: resolve => require(['./../components/layouts/Home.vue'], resolve),
+            children: [
+                {
+                    path: '/test',
+                    component: resolve => require(['../pages/Test.vue'], resolve)
+                }, {
+                    path: '/test2',
+                    component: resolve => require(['../pages/Test2.vue'], resolve)
+                }
+            ]
         },
         {
             path: '/login',
