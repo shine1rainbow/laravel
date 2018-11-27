@@ -36,6 +36,15 @@ Route::group(['prefix' => 'v1'], function () {
 			Route::delete('{id}', 'UserController@destroy');
 		});
 
+		//店铺管理
+		Route::group(['prefix' => 'shop'], function () {
+			Route::get('/', 'ShopController@index');
+			Route::post('/', 'ShopController@store');
+			Route::get('{id}', 'ShopController@show');
+			Route::put('{id}', 'ShopController@update');
+			Route::delete('{id}', 'ShopController@destroy');
+		});
+
 	});
 
 });

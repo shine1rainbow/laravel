@@ -1,31 +1,23 @@
 <?php
 
-namespace App\Jobs\Backend\Shop;
+namespace App\Jobs\Backend\MenuType;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Tables\Shop;
-use stdClass;
+use App\Tables\MenuType;
 
-class ShowJob
+class IndexJob
 {
     use Dispatchable, Queueable;
-
-    /**
-     * shopId
-     *
-     * @var int
-     */
-    private $id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(int $id)
+    public function __construct()
     {
-        $this->id = $id;
+        //
     }
 
     /**
@@ -35,9 +27,11 @@ class ShowJob
      */
     public function handle()
     {
-        $shop = Shop::find($this->id);
+        $shops = MenuType::join('shop_statuses', 'shops.shop_status_id', '=', 'shop_statuses.id')
+            ->select('shops.*', 'shop_statuses.name as shop_status_name')
+            ->get();
 
-        if (is_null($shop)) {
+        if (is_null($shops)) {
 
             $response = [
                 'code' => trans('pheicloud.response.empty.code'),
@@ -52,7 +46,7 @@ class ShowJob
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $shop,
+            'data' => $shops,
         ];
 
         return response()->json($response);

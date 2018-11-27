@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Jobs\Backend\Shop;
+namespace App\Jobs\Backend\MenuType;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Tables\Shop;
+use App\Tables\MenuType;
 use stdClass;
 
-class ShowJob
+class DestroyJob
 {
     use Dispatchable, Queueable;
 
     /**
-     * shopId
-     *
-     * @var int
+     * @var integer $id
      */
     private $id;
 
@@ -23,7 +21,7 @@ class ShowJob
      *
      * @return void
      */
-    public function __construct(int $id)
+    public function __construct($id)
     {
         $this->id = $id;
     }
@@ -35,24 +33,25 @@ class ShowJob
      */
     public function handle()
     {
-        $shop = Shop::find($this->id);
+        $menuType = MenuType::find($this->id);
 
-        if (is_null($shop)) {
+        if (empty($menuType)) {
 
             $response = [
-                'code' => trans('pheicloud.response.empty.code'),
-                'msg' => trans('pheicloud.response.empty.msg'),
-                'data' => new stdClass,
+                'code' => trans('pheicloud.response.notExist.code'),
+                'msg' => trans('pheicloud.response.notExist.msg'),
+                'data' => new stdClass(),
             ];
 
             return response()->json($response);
-
         }
-        
+
+        $menuType->delete();
+
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $shop,
+            'data' => new stdClass(),
         ];
 
         return response()->json($response);

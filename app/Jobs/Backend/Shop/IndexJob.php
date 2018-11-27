@@ -4,8 +4,8 @@ namespace App\Jobs\Backend\Shop;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Cache;
 use App\Tables\Shop;
+use Carbon\Carbon;
 
 class IndexJob
 {
@@ -28,14 +28,9 @@ class IndexJob
      */
     public function handle()
     {
-        //check cache if exist return
-        $res = getDataFromCache('shoplist');
-
-        if (!is_null($res)) {
-            return $res;
-        }
-
-        $shops = Shop::select('id', 'name', 'floor_id', 'gid')->get();
+        $shops = Shop::join('shop_statuses', 'shops.shop_status_id', '=', 'shop_statuses.id')
+            ->select('shops.*', 'shop_statuses.name as shop_status_name')
+            ->get();
 
         if (is_null($shops)) {
 
@@ -48,10 +43,11 @@ class IndexJob
             return response()->json($response);
 
         }
-        
-        //put shoplist to cache
-        Cache::put('shoplist', $shops, \CACHE_MID);
 
+        foreach ($shops as &$shop) {
+            $shop['human_time'] = Carbon::parse($shop['created_at'])->diffForHumans();
+        }
+        
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),

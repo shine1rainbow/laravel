@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Jobs\Backend\Shop;
+namespace App\Jobs\Backend\MenuType;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Tables\Shop;
+use App\Tables\MenuType;
 use stdClass;
 
 class ShowJob
@@ -35,7 +35,7 @@ class ShowJob
      */
     public function handle()
     {
-        $shop = Shop::find($this->id);
+        $shop = MenuType::find($this->id);
 
         if (is_null($shop)) {
 

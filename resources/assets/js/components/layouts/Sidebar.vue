@@ -18,10 +18,10 @@
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat" v-on:click="showInfo"><i
-                    class="fa fa-search"></i>
-            </button>
-          </span>
+                      <button type="submit" name="search" id="search-btn" class="btn btn-flat" v-on:click="showInfo">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
                 </div>
             </form>
             <!-- /.search form -->
@@ -45,9 +45,7 @@
                             </router-link>
                         </li>
                     </ul>
-
                 </li>
-
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -97,10 +95,17 @@
 
             showInfo() {
                 this.$notify.info({
-                    title: this.$i18n.t("common.message"),
-                    message: this.$i18n.t("common.notSupport")
+                    //title: this.$i18n.t("common.message"),
+                    //message: this.$i18n.t("common.notSupport")
+                    title: 'title',
+                    message: 'search'
                 });
             },
+
+			test(index) {
+				console.log('test');
+				console.log(index);
+			}
         }
 
     };

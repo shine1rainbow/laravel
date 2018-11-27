@@ -1,0 +1,73 @@
+[
+    {
+        "id": "1",
+        "shop_id": "1",
+        "name": "1号店测试套餐A",
+        "order": "1",
+        "is_recommend": "1",
+        "is_hot": "1",
+        "working_date": "1,2,3,4,5" ,
+        "opening_time": "5:00,10:00" ,
+        "serving_time": "7:00,10:00"
+    }, {
+        "id": "2",
+        "shop_id": "1",
+        "name": "1号店测试套餐B",
+        "order": "2",
+        "is_recommend": "0",
+        "is_hot": "0",
+        "working_date": "1,2,3,4" ,
+        "opening_time": "6:00,10:00" ,
+        "serving_time": "8:00,10:00"
+    }, {
+        "id": "3",
+        "shop_id": "2",
+        "name": "2号店测试套餐A",
+        "order": "1",
+        "is_recommend": "1",
+        "is_hot": "0",
+        "working_date": "3,4,5" ,
+        "opening_time": "6:00,10:00" ,
+        "serving_time": "8:30,10:00"
+    }, {
+        "id": "4",
+        "shop_id": "3",
+        "name": "三号店测试套餐A",
+        "order": "3",
+        "is_recommend": "0",
+        "is_hot": "0",
+        "working_date": "1,2,3,4,5" ,
+        "opening_time": "8:00,10:00" ,
+        "serving_time": "8:30,13:00"
+    }, {
+        "id": "5",
+        "shop_id": "3",
+        "name": "三号店测试套餐B",
+        "order": "2",
+        "is_recommend": "1",
+        "is_hot": "1",
+        "working_date": "1,2,3,4,5" ,
+        "opening_time": "6:00,10:00" ,
+        "serving_time": "7:30,13:00"
+    }, {
+        "id": "6",
+        "shop_id": "3",
+        "name": "三号店测试套餐C",
+        "order": "1",
+        "is_recommend": "1",
+        "is_hot": "1",
+        "working_date": "1,2,3,4,5" ,
+        "opening_time": "6:30,10:00" ,
+        "serving_time": "7:30,13:00"
+    }, {
+        "id": "7",
+        "shop_id": "4",
+        "name": "4号店测试套餐A",
+        "order": "1",
+        "is_recommend": "1",
+        "is_hot": "1",
+        "working_date": "1,2,3,4,5" ,
+        "opening_time": "7:00,10:00" ,
+        "serving_time": "7:30,13:00"
+    }
+]

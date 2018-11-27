@@ -53,5 +53,23 @@
         "is_menu": 0,
         "pid": "5",
         "order": "6" 
+    }, {
+        "id": "7",
+        "name": "#",
+        "display_en_name": "终端设备",
+        "display_zh_name": "终端设备",
+        "icon": "fa-bar-chart",
+        "is_menu": 1,
+        "pid": "0",
+        "order": "7" 
+    }, {
+        "id": "8",
+        "name": "/ter/list",
+        "display_en_name": "终端列表",
+        "display_zh_name": "终端列表",
+        "icon": "fa-circle-o",
+        "is_menu": 0,
+        "pid": "7",
+        "order": "8" 
     }
 ]

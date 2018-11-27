@@ -22,6 +22,7 @@
                     enter-active-class="animated boundInLeft"
                     leave-active-class="animated boundOutRight"
             >
+                <keep-alive> <router-view></router-view> </keep-alive>
             </transition>
         </section>
         <!-- /.content -->

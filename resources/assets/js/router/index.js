@@ -11,16 +11,25 @@ export default new Router({
             redirect: '/dashboard'
         },
         {
-            path: '/dashboard',
+            path: '/',
             beforeEnter: requireAuth,
             component: resolve => require(['./../components/layouts/Home.vue'], resolve),
             children: [
                 {
-                    path: '/test',
+                    path: '/dashboard',
+                    component: resolve => require(['../pages/Dashboard.vue'], resolve)
+                }, {
+                    path: '/mall',
                     component: resolve => require(['../pages/Test.vue'], resolve)
                 }, {
-                    path: '/test2',
+                    path: '/floor',
                     component: resolve => require(['../pages/Test2.vue'], resolve)
+                }, {
+                    path: '/shop/index',
+                    component: resolve => require(['../pages/shop/index.vue'], resolve)
+                }, {
+                    path: '/shop/create',
+                    component: resolve => require(['../pages/shop/create.vue'], resolve)
                 }
             ]
         },
@@ -37,8 +46,8 @@ export default new Router({
             component: resolve => require(['../pages/errors/404.vue'], resolve)
         },
         {
-            path: '/503',
-            component: resolve => require(['../pages/errors/503.vue'], resolve)
+            path: '/401',
+            component: resolve => require(['../pages/errors/401.vue'], resolve)
         },
         {
             path: '*',

@@ -7,14 +7,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Tables\Shop;
 use stdClass;
 
-class ShowJob
+class DestroyJob
 {
     use Dispatchable, Queueable;
 
     /**
-     * shopId
-     *
-     * @var int
+     * @var integer $id
      */
     private $id;
 
@@ -23,7 +21,7 @@ class ShowJob
      *
      * @return void
      */
-    public function __construct(int $id)
+    public function __construct($id)
     {
         $this->id = $id;
     }
@@ -37,22 +35,23 @@ class ShowJob
     {
         $shop = Shop::find($this->id);
 
-        if (is_null($shop)) {
+        if (empty($shop)) {
 
             $response = [
-                'code' => trans('pheicloud.response.empty.code'),
-                'msg' => trans('pheicloud.response.empty.msg'),
-                'data' => new stdClass,
+                'code' => trans('pheicloud.response.notExist.code'),
+                'msg' => trans('pheicloud.response.notExist.msg'),
+                'data' => new stdClass(),
             ];
 
             return response()->json($response);
-
         }
-        
+
+        $shop->delete();
+
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $shop,
+            'data' => new stdClass(),
         ];
 
         return response()->json($response);
