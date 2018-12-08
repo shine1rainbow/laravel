@@ -15,19 +15,19 @@
     </el-table-column>
 
     <el-table-column
-      label="name"
-      prop="name">
+      label="menu_type_name"
+      prop="menu_type_name">
     </el-table-column>
 
     <el-table-column
-      prop="opening_time"
-      label="opening_time"
+      prop="name"
+      label="name"
       width="180">
     </el-table-column>
 
     <el-table-column
-      label="serving_time"
-      prop="serving_time">
+      label="introduction"
+      prop="introduction">
     </el-table-column>
 
     <el-table-column
@@ -90,7 +90,7 @@
       //获取table数据
 	  fetchTableData() {
 		http({
-			url: ApiList.getMenuTypeListByUserUrl,
+			url: ApiList.getMenuCategoryListByUserUrl,
 			method: 'get',
 		}).then(response => {
             let shops = response.data.data

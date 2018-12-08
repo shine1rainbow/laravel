@@ -57,7 +57,7 @@ class GetMenuByUserJob
         }
 
         $menus = TablesModels\MenuCategory::join('menus', 'menu_categories.id', '=', 'menus.menu_category_id')
-            ->select('menus.*', 'menu_categories.name as _menu_category_name')
+            ->select('menus.*', 'menu_categories.name as menu_category_name')
             ->whereIn('menu_type_id', $menuTypeIds)->get();
 
         $response = [

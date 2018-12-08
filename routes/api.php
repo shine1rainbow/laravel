@@ -69,12 +69,27 @@ Route::group(['prefix' => 'v1'], function () {
 			Route::get('/', 'ShopStatusController@index');
 		});
 
-		//一级菜单管理
+        //一级菜单管理
 		Route::group(['prefix' => 'menutype'], function () {
 			Route::get('user', 'MenuTypeController@user');
 			Route::put('{id}', 'MenuTypeController@update');
 			Route::delete('{id}', 'MenuTypeController@destroy');
 		});
+
+		//菜单管理
+		Route::group(['prefix' => 'menu'], function () {
+			Route::get('user', 'MenuController@user');
+			Route::put('{id}', 'MenuController@update');
+			Route::delete('{id}', 'MenuController@destroy');
+		});
+
+		//管理
+		Route::group(['prefix' => 'menucategory'], function () {
+			Route::get('user', 'MenuCategoryController@user');
+			Route::put('{id}', 'MenuCategoryController@update');
+			Route::delete('{id}', 'MenuCategoryController@destroy');
+		});
+
 
 		//图片管理
 		Route::group(['prefix' => 'picture'], function () {

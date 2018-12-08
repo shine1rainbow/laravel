@@ -40,6 +40,12 @@ export default new Router({
                     path: '/menutype/user',
                     component: resolve => require(['../pages/menuType/user.vue'], resolve)
                 }, {
+                    path: '/menucategory/user',
+                    component: resolve => require(['../pages/menuCategory/user.vue'], resolve)
+                }, {
+                    path: '/menu/user',
+                    component: resolve => require(['../pages/menu/user.vue'], resolve)
+                }, {
                     path: '/staff/index',
                     component: resolve => require(['../pages/staff/index.vue'], resolve)
                 }, {

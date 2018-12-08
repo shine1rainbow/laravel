@@ -20,19 +20,24 @@
     </el-table-column>
 
     <el-table-column
-      prop="restaurant_name"
-      label="restaurant_name"
+      label="price"
+      prop="price">
+    </el-table-column>
+
+    <el-table-column
+      prop="menu_category_name"
+      label="menu_category_name"
       width="180">
     </el-table-column>
 
     <el-table-column
-      label="serving_time"
-      prop="serving_time">
+      label="avater"
+      prop="avater">
     </el-table-column>
 
     <el-table-column
-      label="is_hot"
-      prop="is_hot">
+      label="spicy"
+      prop="spicy">
     </el-table-column>
 
     <el-table-column
@@ -90,7 +95,7 @@
       //获取table数据
 	  fetchTableData() {
 		http({
-			url: ApiList.getMenuTypeListByUserUrl,
+			url: ApiList.getMenuListByUserUrl,
 			method: 'get',
 		}).then(response => {
             let shops = response.data.data
@@ -102,7 +107,7 @@
 
       //编辑操作
       handleEdit(index, row) {
-        this.$router.push('/menutype/show/' + row.id)
+        this.$router.push('/menu/show/' + row.id)
       },
 
       //删除操作
@@ -116,7 +121,7 @@
 
 			//删除店铺
 			http({
-				url: ApiList.deleteMenuTypeUrl + row.id,
+				url: ApiList.deleteMenuUrl + row.id,
 				method: 'delete',
 			}).then(response => {
 				if (response.data.code == '200') {
