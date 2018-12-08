@@ -91,4 +91,7 @@
 .main-header a {
     text-decoration: none; 
 }
+.logo {
+    height: 52px;
+}
 </style>

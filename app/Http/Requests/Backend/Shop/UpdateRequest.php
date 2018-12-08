@@ -24,12 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer',
-            'restaurant_name' => 'required|string',
-            'restaurant_logo' => 'required|string',
-            'restaurant_background' => 'required|string',
-            'food_type' => 'required|string',
-            'email' => 'required|email',
+            'id' => 'integer',
+            'restaurant_name' => 'string',
+            'restaurant_logo' => 'string',
+            'restaurant_background' => 'string',
+            'food_type' => 'string',
+            'email' => 'email',
             'mobile' => 'string',
             'landline' => 'string',
             'address' => 'string',

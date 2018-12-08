@@ -15,6 +15,7 @@ require('admin-lte')
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import VueDataTables from 'vue-data-tables'
 import Http from './utils/fetch';
 import router from './router/index';
 import store from './store/index';
@@ -23,6 +24,7 @@ import App from './App';
 
 Vue.use(Http)
 Vue.use(ElementUI)
+Vue.use(VueDataTables)
 
 /* Require Vue Componments */
 //Vue.component('example', require('./components/Example.vue'));

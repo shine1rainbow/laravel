@@ -15,16 +15,17 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->default(1)->comment('用户ID');
             $table->string('restaurant_name')->comment('商家名称');
-            $table->string('restaurant_logo')->comment('商家Logo');
-            $table->string('restaurant_background')->comment('App商家背景图片');
-            $table->string('food_type')->comment('食物类别');
-            $table->string('email')->unique()->comment('邮箱');
-            $table->string('mobile')->unique()->comment('手机号');
-            $table->string('landline')->comment('座机号');
-            $table->string('address')->comment('城市');
-            $table->string('postcode')->comment('邮编');
-            $table->string('service_charge')->nullable()->comment('服务费');
+            $table->string('restaurant_logo')->nullable()->comment('商家Logo');
+            $table->string('restaurant_background')->nullable()->comment('App商家背景图片');
+            $table->string('food_type')->nullable()->comment('食物类别');
+            $table->string('email')->nullable()->unique()->comment('邮箱');
+            $table->string('mobile')->nullable()->unique()->comment('手机号');
+            $table->string('landline')->nullable()->comment('座机号');
+            $table->string('address')->nullable()->comment('城市');
+            $table->string('postcode')->nullable()->comment('邮编');
+            $table->double('service_charge', 4, 2)->nullable()->comment('服务费');
             $table->string('payment_sequence')->nullable()->comment('支付顺序');
             $table->string('vat_reg_no')->nullable()->comment('税号');
             $table->string('images')->nullable()->comment('图片');
@@ -32,6 +33,7 @@ class CreateShopsTable extends Migration
             $table->string('remind')->nullable()->comment('温馨提示');
             $table->string('activity')->nullable()->comment('优惠活动');
             $table->integer('shop_status_id')->unsigned()->default(1)->comment('门店状态');
+            $table->string('shop_qr')->nullable()->comment('店铺总二维码');
             $table->json('business_hour')->comment('工作时间(7天): 09:00-21:00,09:00-20:30,...,歇业');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));

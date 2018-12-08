@@ -8,10 +8,13 @@ export default {
     "loginFailed": "登录失败",
     "success": "请求成功",
     "error": "请求失败",
-    "deleteConfirm": '此操作将永久删除该文件, 是否继续?',
+    "deleteConfirm": '此操作将永久删除该资源, 是否继续?',
     "prompt": '提示',
+    "operate": '操作',
     "sure": '确定',
     "cancel": '取消',
+    "edit": "编辑",
+    "delete": "删除",
     "deleteSuccess": '删除成功',
     "deleteCancel": '取消删除'
 }

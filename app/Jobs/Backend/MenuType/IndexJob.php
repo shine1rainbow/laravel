@@ -27,11 +27,11 @@ class IndexJob
      */
     public function handle()
     {
-        $shops = MenuType::join('shop_statuses', 'shops.shop_status_id', '=', 'shop_statuses.id')
-            ->select('shops.*', 'shop_statuses.name as shop_status_name')
+        $menuTypes = MenuType::join('shops', 'menu_types.shop_id', '=', 'shops.id')
+            ->select('menu_types.*', 'shops.name as shop_name')
             ->get();
 
-        if (is_null($shops)) {
+        if (is_null($menuTypes)) {
 
             $response = [
                 'code' => trans('pheicloud.response.empty.code'),
@@ -46,7 +46,7 @@ class IndexJob
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $shops,
+            'data' => $menuTypes,
         ];
 
         return response()->json($response);

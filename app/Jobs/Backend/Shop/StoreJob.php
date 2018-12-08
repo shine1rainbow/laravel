@@ -32,9 +32,9 @@ class StoreJob
      */
     public function handle()
     {
-        $shop = TableModels\Shop::insert($this->params);
+        $shopId = TableModels\Shop::insertGetId($this->params);
 
-        if ($shop) {
+        if ($shopId) {
             $code = trans('pheicloud.response.success.code');
             $msg = trans('pheicloud.response.success.msg');
         } else {
@@ -45,6 +45,7 @@ class StoreJob
         $response = [
             'code' => $code,
             'msg' => $msg,
+            'data' => $shopId,
         ];
 
         return response()->json($response);

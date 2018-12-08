@@ -39,6 +39,21 @@ class ShopController extends Controller
     }
 
     /**
+     * upload image.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadImg()
+    {
+        $type = request()->input('type');
+        $id = request()->input('id');
+        $filePath = request()->file->store('shops', 'public');
+        $fileFullPath = url('storage') . '/' . $filePath;
+        $response = $this->dispatch(new ShopJobs\UploadImageJob($id, $type, $fileFullPath));
+        return $response;
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -47,6 +62,7 @@ class ShopController extends Controller
     public function store(ShopRequests\StoreRequest $request)
     {
         $params = $request->all();
+        $params['user_id'] = request()->user()->id ?? 1;
         $response = $this->dispatch(new ShopJobs\StoreJob($params));
         return $response;
     }
@@ -86,6 +102,66 @@ class ShopController extends Controller
     public function destroy(int $id)
     {
         $response = $this->dispatch(new ShopJobs\DestroyJob($id));
+        return $response;
+    }
+    
+    /**
+     * Show shop MenuTypes
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menutypes(int $id)
+    {
+        $response = $this->dispatch(new ShopJobs\MenuTypesJob($id));
+        return $response;
+    }
+
+    /**
+     * Show shop MenuCategory
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menucategories(int $id)
+    {
+        $response = $this->dispatch(new ShopJobs\MenuCategoriesJob($id));
+        return $response;
+    }
+
+    /**
+     * Show shop menus
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menus(int $id)
+    {
+        $response = $this->dispatch(new ShopJobs\MenusJob($id));
+        return $response;
+    }
+
+    /**
+     * Show shop staffs
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function staffs(int $id)
+    {
+        $response = $this->dispatch(new ShopJobs\StaffsJob($id));
+        return $response;
+    }
+
+    /**
+     * Display shops of the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function user()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new ShopJobs\UserJob($user));
         return $response;
     }
 }

@@ -77,6 +77,15 @@ http.interceptors.response.use(function (response) {
         })
     }
 
+    //格式不符合
+    if ([422].indexOf(response.status) >= 0) {
+        Notification.error({
+            title: 'Error',
+            message: 'Whoos, something went wrong.',
+            duration: 1500
+        })
+    }
+
     return Promise.reject(error);
 });
 

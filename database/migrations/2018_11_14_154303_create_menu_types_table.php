@@ -19,6 +19,7 @@ class CreateMenuTypesTable extends Migration
             $table->integer('shop_id')->unsigned()->comment("店铺ID");
             $table->string('name')->comment("菜单名称");
             $table->integer('order')->default(1)->comment("排序");
+            $table->integer('status')->default(1)->comment("开/关");
             $table->boolean('is_recommend')->default(0)->comment("是否推荐");
             $table->boolean('is_hot')->default(0)->comment("是否热搜");
             $table->string('working_date')->comment("开放时间,周一周五开放:1,2,3,4,5");

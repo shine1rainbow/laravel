@@ -49,8 +49,8 @@
     </el-table-column>
 
     <el-table-column
-      align="right"
-      width="160">
+      align="center"
+      width="200">
       <template slot="header" slot-scope="scope">
         <el-input
           v-model="search"
@@ -61,10 +61,14 @@
         <el-button
           size="mini"
           type="success"
+          icon="el-icon-edit"
+          round
           @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
         <el-button
           size="mini"
           type="danger"
+          icon="el-icon-delete" 
+          round
           @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
       </template>
     </el-table-column>
@@ -86,6 +90,7 @@
     },
 
 	created() {
+	  this.test()
 	  this.fetchTableData()
 	},
 
@@ -94,6 +99,19 @@
       //过滤标签
       filterTag(value, row) {
         return row.shop_status_name === value;
+      },
+
+      test() {
+
+		http({
+			url: ApiList.getUserMenuUrl,
+			method: 'get',
+		}).then(response => {
+            console.log(response.data.data)
+		}, response => {
+			console.log("fetch data error")
+		})
+
       },
 
       //获取table数据
@@ -114,7 +132,7 @@
 
       //编辑操作
       handleEdit(index, row) {
-        console.log(index, row.id);
+        this.$router.push('/shop/show/' + row.id)
       },
 
       //删除操作

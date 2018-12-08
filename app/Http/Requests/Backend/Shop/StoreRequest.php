@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\Shop;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShopRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class ShopRequest extends FormRequest
     {
         return [
             'restaurant_name' => 'required|string',
-            'restaurant_logo' => 'required|string',
-            'restaurant_background' => 'required|string',
+            'restaurant_logo' => 'string',
+            'restaurant_background' => 'string',
             'food_type' => 'required|string',
             'email' => 'required|email',
             'mobile' => 'string',

@@ -114,4 +114,56 @@ class UserController extends Controller
         $response = $this->dispatch(new UserJobs\GetPermissionByUserIdJob($user));
         return $response;
     }
+
+    /**
+     * Get User shops
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getShopByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetShopByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User MenuTypes
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getMenuTypeByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetMenuTypeByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User MenuCategory
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getMenuCategoryByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetMenuCategoryByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User Menu
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getMenuByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetMenuByUserJob($user));
+        return $response;
+    }
 }

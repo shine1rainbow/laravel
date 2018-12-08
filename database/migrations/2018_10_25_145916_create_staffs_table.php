@@ -15,6 +15,7 @@ class CreateStaffsTable extends Migration
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('shop_id')->unsigned()->comment("店铺ID");
             $table->string('nickname')->comment('员工昵称');
             $table->string('first_name')->comment('员工姓');
             $table->string('last_name')->comment('员工名');

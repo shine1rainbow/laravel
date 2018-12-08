@@ -88,4 +88,17 @@ class MenutypeController extends Controller
         $response = $this->dispatch(new MenuTypeJobs\DestroyJob($id));
         return $response;
     }
+
+    /**
+     * show user menutype lists.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function user()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new MenuTypeJobs\UserJob($user));
+        return $response;
+    }
 }

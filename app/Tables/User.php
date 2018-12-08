@@ -60,4 +60,19 @@ class User extends Authenticatable
             ->first();
     }
 
+    /**
+     * 一对多关联
+     */
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    /**
+     * 一对多关联
+     */
+    public function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
 }

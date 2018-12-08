@@ -28,8 +28,32 @@ export default new Router({
                     path: '/shop/index',
                     component: resolve => require(['../pages/shop/index.vue'], resolve)
                 }, {
+                    path: '/shop/user',
+                    component: resolve => require(['../pages/shop/user.vue'], resolve)
+                }, {
+                    path: '/shop/show/:id',
+                    component: resolve => require(['../pages/shop/show.vue'], resolve)
+                }, {
                     path: '/shop/create',
                     component: resolve => require(['../pages/shop/create.vue'], resolve)
+                }, {
+                    path: '/menutype/user',
+                    component: resolve => require(['../pages/menuType/user.vue'], resolve)
+                }, {
+                    path: '/staff/index',
+                    component: resolve => require(['../pages/staff/index.vue'], resolve)
+                }, {
+                    path: '/tag/index',
+                    component: resolve => require(['../pages/tag/index.vue'], resolve)
+                }, {
+                    path: '/tag/user',
+                    component: resolve => require(['../pages/tag/user.vue'], resolve)
+                }, {
+                    path: '/picture/index',
+                    component: resolve => require(['../pages/picture/index.vue'], resolve)
+                }, {
+                    path: '/picture/user',
+                    component: resolve => require(['../pages/picture/user.vue'], resolve)
                 }
             ]
         },
