@@ -166,4 +166,43 @@ class UserController extends Controller
         $response = $this->dispatch(new UserJobs\GetMenuByUserJob($user));
         return $response;
     }
+
+    /**
+     * Get User MenuOptions
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getMenuOptionByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetMenuOptionByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User MenuOptions
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getMenuAdditionByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetMenuAdditionByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User staff
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getStaffByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetStaffByUserJob($user));
+        return $response;
+    }
 }

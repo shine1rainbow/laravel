@@ -31,6 +31,9 @@ Route::group(['prefix' => 'v1'], function () {
 			Route::get('menutype', 'UserController@getMenuTypeByUser');
 			Route::get('menucategory', 'UserController@getMenuCategoryByUser');
 			Route::get('menu', 'UserController@getMenuByUser');
+			Route::get('menuoption', 'UserController@getMenuOptionByUser');
+			Route::get('menuaddition', 'UserController@getMenuAdditionByUser');
+			Route::get('staff', 'UserController@getStaffByUser');
 			Route::get('permission', 'UserController@getPermissionByUserId');
 			Route::get('/', 'UserController@index');
 			Route::post('/', 'UserController@store');

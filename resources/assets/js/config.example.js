@@ -10,9 +10,12 @@ const ApiList = {
     'getTokenUrl': '/oauth/token',
     'getUserInfoUrl': 'api/v1/backend/user/info',
     'getPermissionUrl': 'api/v1/backend/user/permission',
+    'getStaffUrl': 'api/v1/backend/user/staff',
     'getUserMenuTypeUrl': 'api/v1/backend/user/menutype',
     'getUserMenuCategoryUrl': 'api/v1/backend/user/menucategory',
     'getUserMenuUrl': 'api/v1/backend/user/menu',
+    'getUserMenuAdditionUrl': 'api/v1/backend/user/menuaddition',
+    'getUserMenuOptionUrl': 'api/v1/backend/user/menuoption',
 
     'getShopListByUserUrl': 'api/v1/backend/shop/user',
     'getShopListUrl': 'api/v1/backend/shop',

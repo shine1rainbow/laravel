@@ -46,6 +46,15 @@ export default new Router({
                     path: '/menu/user',
                     component: resolve => require(['../pages/menu/user.vue'], resolve)
                 }, {
+                    path: '/menuoption/user',
+                    component: resolve => require(['../pages/menuOption/user.vue'], resolve)
+                }, {
+                    path: '/menuaddition/user',
+                    component: resolve => require(['../pages/menuAddition/user.vue'], resolve)
+                }, {
+                    path: '/staff/user',
+                    component: resolve => require(['../pages/staff/user.vue'], resolve)
+                }, {
                     path: '/staff/index',
                     component: resolve => require(['../pages/staff/index.vue'], resolve)
                 }, {
