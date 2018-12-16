@@ -13,6 +13,7 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
+        //图片资源标签
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->comment('用户ID');

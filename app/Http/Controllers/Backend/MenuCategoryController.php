@@ -44,7 +44,7 @@ class MenuCategoryController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuCategoryTypeRequests\StoreRequest $request)
+    public function store(MenuCategoryRequests\StoreRequest $request)
     {
         $params = $request->all();
         $response = $this->dispatch(new MenuCategoryJobs\StoreJob($params));

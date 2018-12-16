@@ -29,6 +29,7 @@ class CreateMenusTable extends Migration
             $table->boolean('is_recommend')->default(0)->comment("是否推荐");
             $table->boolean('is_hot')->default(0)->comment("是否热搜");
             $table->longText('introduction')->nullable()->comment("菜介绍");
+            $table->json('info')->nullable()->comment("其他");
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

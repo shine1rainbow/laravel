@@ -121,7 +121,7 @@
 
 			//删除店铺
 			http({
-				url: ApiList.deleteMenuUrl + row.id,
+				url: ApiList.deleteMenuOptionUrl + row.id,
 				method: 'delete',
 			}).then(response => {
 				if (response.data.code == '200') {

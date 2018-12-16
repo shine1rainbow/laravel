@@ -5,6 +5,8 @@
 // Variables
 @import "variables";
 
+@import "_global";
+
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -14,3 +16,5 @@
 
 //Font-awesome
 @import "~font-awesome/scss/font-awesome.scss";
+
+@import "~animate.css/animate.min.css";

@@ -18,7 +18,7 @@ class CreatePlatformsTable extends Migration
             $table->integer('user_id')->unsigned()->comment('关联用户主表ID');
             $table->string('name')->comment('平台名称');
             $table->string('key')->comment('各平台用户标识，如微信的openid');
-            $table->string('key_extra')->unique()->nullable()->comment('配合key需要的额外信息，用户标识.如微信的union_id');
+            $table->string('key_extra')->unique()->nullable()->comment('配合key需要额外信息，用户标识.如微信的union_id');
             $table->string('description')->nullable()->comment('平台描述');
             $table->json('info')->nullable()->comment('额外信息:性别,年龄');
             $table->softDeletes()->comment('软删除');

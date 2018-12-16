@@ -17,32 +17,11 @@
 					  </el-form-item>
 
 					  <el-form-item label="商家Logo">
-						<el-upload
-                          action="test"
-                          :http-request="uploadShopImg"
-						  list-type="picture-card"
-						  :limit="1"
-						  :on-preview="handleRestaurantLogoPreview"
-						  :on-remove="handleRestaurantLogoRemove">
-						  <i class="el-icon-plus" style="margin-top: 52px"></i>
-						</el-upload>
-						<el-dialog :visible.sync="dialogRestaurantLogoVisible">
-						  <img width="100%" :src="dialogRestaurantLogoUrl" alt="">
-						</el-dialog>
+                          <img :src="form.restaurant_background" id="restaurant_background_img">
 					  </el-form-item>
 
 					  <el-form-item label="App商家Logo">
-						<el-upload
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  list-type="picture-card"
-						  :limit="1"
-						  :on-preview="handleAppLogoPreview"
-						  :on-remove="handleAppLogoRemove">
-						  <i class="el-icon-plus" style="margin-top: 52px"></i>
-						</el-upload>
-						<el-dialog :visible.sync="dialogAppLogoVisible">
-						  <img width="100%" :src="dialogAppLogoUrl" alt="">
-						</el-dialog>
+                          <img :src="form.restaurant_logo" id="restaurant_logo_img">
 					  </el-form-item>
 
 					  <el-form-item label="食物类别">
@@ -78,17 +57,13 @@
 					  </el-form-item>
 
 					  <el-form-item label="详细照片">
-						<el-upload
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  list-type="picture-card"
-						  :limit="6"
-						  :on-preview="handleRestaurantImagesPreview"
-						  :on-remove="handleRestaurantImagesRemove">
-						  <i class="el-icon-plus" style="margin-top: 52px"></i>
-						</el-upload>
-						<el-dialog :visible.sync="dialogRestaurantImagesVisible">
-						  <img width="100%" :src="dialogRestaurantImagesUrl" alt="">
-						</el-dialog>
+                        <el-row>
+                          <el-col :span="8" v-for="(image,index) in form.images" :key="index" :offset="index > 0 ? 2 : 0">
+                            <el-card :body-style="{ padding: '0px' }">
+                              <img :src="image" class="restaurant_image_img">
+                            </el-card>
+                          </el-col>
+                        </el-row>
 					  </el-form-item>
 
 					  <el-form-item>
@@ -103,8 +78,8 @@
 					  </el-form-item>
 
 					  <el-form-item>
-						<el-button type="primary" @click="onSubmit">立即创建</el-button>
-						<el-button>取消</el-button>
+                        <el-button size="small" type="success" @click="onSubmit">更新</el-button>
+				        <el-button size="small" @click="backUserShopList">取消</el-button>
 					  </el-form-item>
 					</el-form>
 
@@ -123,19 +98,16 @@
         form: {
           id: '',
           restaurant_name: '',
+          restaurant_background: '',
+          restaurant_logo: '',
           food_type: '',
           email: '',
           mobile: '',
           landline: '',
           address: '',
-          postcode: ''
+          postcode: '',
+          images: [] 
         },
-        dialogRestaurantLogoUrl: '',
-        dialogRestaurantLogoVisible: false,
-        dialogAppLogoUrl: '',
-        dialogAppLogoVisible: false,
-        dialogRestaurantImagesUrl: '',
-        dialogRestaurantImagesVisible: false,
 
         value4: [],
       }
@@ -146,55 +118,14 @@
     },
 
     methods: {
+
       onSubmit() {
         console.log('submit!')
       },
 
-      uploadShopImg (param) {
-
-        let formData = new FormData()
-        formData.append('file', param.file)
-
-		http({
-			url: ApiList.uploadShopImgUrl,
-			method: 'post',
-            data: formData
-		}).then(response => {
-            console.log(response.data)
-		}, response => {
-			console.log("fetch data error")
-		})
-
-      },
-
-	  //处理商店Logo
-      handleRestaurantLogoRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handleRestaurantLogoPreview(file) {
-        this.dialogRestaurantLogoUrl = file.url;
-		console.log(this.dialogRestaurantLogoUrl);
-        this.dialogRestaurantLogoVisible = true;
-      },
-
-	  //处理商店详细
-      handleRestaurantImagesRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handleRestaurantImagesPreview(file) {
-        this.dialogRestaurantImagesUrl = file.url;
-        this.dialogRestaurantImagesVisible = true;
-      },
-
-	  //处理AppLogo
-      handleAppLogoPreview(file) {
-        this.dialogAppLogoUrl = file.url;
-		console.log(this.dialogAppLogoUrl);
-        this.dialogAppLogoVisible = true;
-      },
-      handleAppLogoRemove(file, fileList) {
-        console.log(file, fileList);
-      },
+	  backUserShopList() {
+		this.$router.push('/shop/user')
+	  },
 
       //获取店铺详细数据
       fetchShopData() {
@@ -204,7 +135,8 @@
 			method: 'get',
 		}).then(response => {
 			this.form = response.data.data
-            console.log(response.data)
+			this.form.images = response.data.data.images.split(',')
+            console.log(this.form.images)
 		}, response => {
 			console.log("fetch data error")
 		})
@@ -230,5 +162,17 @@
   }
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+  }
+  #restaurant_background_img {
+    width: 200px;
+    height: 200px;
+  }
+  #restaurant_logo_img {
+    width: 200px;
+    height: 200px;
+  }
+  .restaurant_image_img {
+    width: 300px;
+    height: 300px;
   }
 </style>

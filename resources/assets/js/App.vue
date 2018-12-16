@@ -8,7 +8,4 @@
 </script>
 
 <style>
-    /*
-    @import "./assets/plugins/css/animate.min.css";
-    */
 </style>

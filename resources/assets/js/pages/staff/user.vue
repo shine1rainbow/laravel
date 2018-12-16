@@ -1,71 +1,77 @@
 <template>
-  <el-table
-    :data="tableData.filter(data => !search || data.restaurant_name.toLowerCase().includes(search.toLowerCase()))"
-    border
-    style="width: 100%">
+    <div>
+      <div class="toolbar">
+          <el-button type="primary" icon="el-icon-refresh" circle v-on:click="fetchTableData"></el-button>
+          <el-button type="success" icon="el-icon-plus" circle v-on:click="addStaff"></el-button>
+      </div>
 
-    <el-table-column
-      type="index"
-      width="50">
-    </el-table-column>
+      <el-table
+        :data="tableData.filter(data => !search || data.restaurant_name.toLowerCase().includes(search.toLowerCase()))"
+        border
+        style="width: 100%">
 
-    <el-table-column
-      label="restaurant_name"
-      prop="restaurant_name">
-    </el-table-column>
+        <el-table-column
+          type="index"
+          width="50">
+        </el-table-column>
 
-    <el-table-column
-      label="nickname"
-      prop="nickname">
-    </el-table-column>
+        <el-table-column
+          label="restaurant_name"
+          prop="restaurant_name">
+        </el-table-column>
 
-    <el-table-column
-      label="first_name"
-      prop="first_name">
-    </el-table-column>
+        <el-table-column
+          label="nickname"
+          prop="nickname">
+        </el-table-column>
 
-    <el-table-column
-      prop="last_name"
-      label="last_name"
-      width="180">
-    </el-table-column>
+        <el-table-column
+          label="first_name"
+          prop="first_name">
+        </el-table-column>
 
-    <el-table-column
-      label="position"
-      prop="position">
-    </el-table-column>
+        <el-table-column
+          prop="last_name"
+          label="last_name"
+          width="180">
+        </el-table-column>
 
-    <el-table-column
-      label="age"
-      prop="age">
-    </el-table-column>
+        <el-table-column
+          label="position"
+          prop="position">
+        </el-table-column>
 
-    <el-table-column
-      align="center"
-      width="200">
-      <template slot="header" slot-scope="scope">
-        <el-input
-          v-model="search"
-          size="mini"
-          placeholder="输入关键字搜索"/>
-      </template>
-      <template slot-scope="scope">
-        <el-button
-          size="mini"
-          type="success"
-          icon="el-icon-edit"
-          round
-          @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          icon="el-icon-delete" 
-          round
-          @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-      </template>
-    </el-table-column>
+        <el-table-column
+          label="age"
+          prop="age">
+        </el-table-column>
 
-  </el-table>
+        <el-table-column
+          align="center"
+          width="200">
+          <template slot="header" slot-scope="scope">
+            <el-input
+              v-model="search"
+              size="mini"
+              placeholder="输入关键字搜索"/>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="success"
+              icon="el-icon-edit"
+              round
+              @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              icon="el-icon-delete" 
+              round
+              @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 </template>
 
 <script>
@@ -87,6 +93,10 @@
 
     methods: {
 
+      addStaff() {
+        this.$router.push('/staff/create')
+      },
+
       //过滤标签
       filterTag(value, row) {
         return row.shop_status_name === value;
@@ -95,7 +105,7 @@
       //获取table数据
 	  fetchTableData() {
 		http({
-			url: ApiList.getStaffUrl,
+			url: ApiList.getUserStaffUrl,
 			method: 'get',
 		}).then(response => {
             let shops = response.data.data
@@ -146,3 +156,8 @@
 	}
   }
 </script>
+<style scoped>
+.toolbar {
+    margin: 10px 5px 10px 0;
+}
+</style>

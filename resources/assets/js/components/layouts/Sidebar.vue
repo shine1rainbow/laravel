@@ -84,7 +84,7 @@
 
             fetchMenus () {
                 http({
-                    url: ApiList.getPermissionUrl,
+                    url: ApiList.getUserPermissionUrl,
                     method: 'get'
                 }).then(response => {
                     this.menus = response.data.data
@@ -101,12 +101,16 @@
                     message: 'search'
                 });
             },
-
-			test(index) {
-				console.log('test');
-				console.log(index);
-			}
         }
 
     };
 </script>
+<style>
+
+li.treeview.menu-open > a {
+    text-decoration: none !important;
+}
+li.treeview > a {
+    text-decoration: none !important;
+}
+</style>

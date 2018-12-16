@@ -17,12 +17,14 @@
         <!-- Main content -->
         <section class="content">
             <transition
-                    name="custom-classes-transition"
-                    mode="out-in"
-                    enter-active-class="animated boundInLeft"
-                    leave-active-class="animated boundOutRight"
+                name="custom-classes-transition"
+                mode="out-in"
+                enter-active-class="animated fadeInLeft"
+                leave-active-class="animated fadeOutRight"
             >
-                <keep-alive> <router-view></router-view> </keep-alive>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </transition>
         </section>
         <!-- /.content -->
@@ -39,15 +41,15 @@
             return {
             };
         },
-
-        methods: {
+        computed: {
+            key() {
+                return this.$route.fullPath
+            }
         },
-
-        created() {
+        methods: {
         },
     };
 </script>
 
 <style>
 </style>
-

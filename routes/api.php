@@ -18,7 +18,7 @@
 | tip: In local remove the middleware auth:api, but when app online your
 | should never missing it.
 */
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 
 	Route::group(['namespace' => 'Api\V1'], function () {
 	});
@@ -34,6 +34,7 @@ Route::group(['prefix' => 'v1'], function () {
 			Route::get('menuoption', 'UserController@getMenuOptionByUser');
 			Route::get('menuaddition', 'UserController@getMenuAdditionByUser');
 			Route::get('staff', 'UserController@getStaffByUser');
+			Route::get('shop', 'UserController@getShopByUser');
 			Route::get('permission', 'UserController@getPermissionByUserId');
 			Route::get('/', 'UserController@index');
 			Route::post('/', 'UserController@store');
@@ -77,10 +78,12 @@ Route::group(['prefix' => 'v1'], function () {
 			Route::get('user', 'MenuTypeController@user');
 			Route::put('{id}', 'MenuTypeController@update');
 			Route::delete('{id}', 'MenuTypeController@destroy');
+			Route::post('/', 'MenuTypeController@store');
 		});
 
 		//菜单管理
 		Route::group(['prefix' => 'menu'], function () {
+			Route::post('/', 'MenuController@store');
 			Route::get('user', 'MenuController@user');
 			Route::put('{id}', 'MenuController@update');
 			Route::delete('{id}', 'MenuController@destroy');
@@ -88,9 +91,17 @@ Route::group(['prefix' => 'v1'], function () {
 
 		//管理
 		Route::group(['prefix' => 'menucategory'], function () {
+			Route::post('/', 'MenuCategoryController@store');
 			Route::get('user', 'MenuCategoryController@user');
 			Route::put('{id}', 'MenuCategoryController@update');
 			Route::delete('{id}', 'MenuCategoryController@destroy');
+		});
+
+		//员工
+		Route::group(['prefix' => 'staff'], function () {
+			Route::post('/', 'StaffController@store');
+			Route::put('{id}', 'StaffController@update');
+			Route::delete('{id}', 'StaffController@destroy');
 		});
 
 

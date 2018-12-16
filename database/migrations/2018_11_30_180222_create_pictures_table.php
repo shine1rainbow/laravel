@@ -13,9 +13,10 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
+        //图片资源
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url')->nullable()->comment('图片路径');
+            $table->string('url')->default('')->comment('图片路径');
             $table->integer('user_id')->unsigned()->comment('用户ID');
             $table->integer('tag_id')->unsigned()->default(1)->comment('标签ID');
             $table->integer('order')->default(1)->comment('图片权重');

@@ -8,26 +8,34 @@
 </template>
 
 <script>
-    import AppHeader from './Header';
-    import AppSidebar from './Sidebar';
-    import AppContent from './Content';
-    import AppFooter from './/Footer';
+  import AppHeader from './Header';
+  import AppSidebar from './Sidebar';
+  import AppContent from './Content';
+  import AppFooter from './Footer';
 
-    export default {
-        name: 'App',
+  export default {
+      name: 'App',
 
-        components: {
-            AppHeader, AppSidebar, AppContent, AppFooter,
-        },
+      components: {
+          AppHeader, AppSidebar, AppContent, AppFooter,
+      },
 
-        data() {
-            return {
-                title: null,
-            };
-        },
+      data() {
+          return {
+              title: null,
+          };
+      },
 
-        replace: false,
-    };
+      created() {
+          //修复初次进入系统菜单点击bug
+          $(document).ready(() => {
+              const trees = $('[data-widget="tree"]')
+              trees.tree()
+          })
+      },
+
+      replace: false,
+  };
 </script>
 
 <style>

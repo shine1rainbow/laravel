@@ -1,7 +1,7 @@
 export default {
-    "systemName": "Waiterx",
-    "systemMiniName": "Wx",
-    "company": "waiterx xxxxx",
+    "systemName": "BI",
+    "systemMiniName": "BI",
+    "company": "pheicloud xxxxx",
     "logout": "注销",
     "profile": "设置",
     "loginSuccess": "登录成功",
@@ -16,5 +16,7 @@ export default {
     "edit": "编辑",
     "delete": "删除",
     "deleteSuccess": '删除成功',
-    "deleteCancel": '取消删除'
+    "deleteCancel": '取消删除',
+    "createSuccess": '添加成功',
+    "createCancel": '取消添加'
 }

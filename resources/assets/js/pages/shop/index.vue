@@ -90,7 +90,6 @@
     },
 
 	created() {
-	  this.test()
 	  this.fetchTableData()
 	},
 
@@ -99,19 +98,6 @@
       //过滤标签
       filterTag(value, row) {
         return row.shop_status_name === value;
-      },
-
-      test() {
-
-		http({
-			url: ApiList.getUserMenuUrl,
-			method: 'get',
-		}).then(response => {
-            console.log(response.data.data)
-		}, response => {
-			console.log("fetch data error")
-		})
-
       },
 
       //获取table数据

@@ -40,11 +40,29 @@ export default new Router({
                     path: '/menutype/user',
                     component: resolve => require(['../pages/menuType/user.vue'], resolve)
                 }, {
+                    path: '/menutype/create',
+                    component: resolve => require(['../pages/menuType/create.vue'], resolve)
+                }, {
+                    path: '/menutype/edit',
+                    component: resolve => require(['../pages/menuType/edit.vue'], resolve)
+                }, {
                     path: '/menucategory/user',
                     component: resolve => require(['../pages/menuCategory/user.vue'], resolve)
                 }, {
+                    path: '/menucategory/create',
+                    component: resolve => require(['../pages/menuCategory/create.vue'], resolve)
+                }, {
+                    path: '/menucategory/edit',
+                    component: resolve => require(['../pages/menuCategory/edit.vue'], resolve)
+                }, {
                     path: '/menu/user',
                     component: resolve => require(['../pages/menu/user.vue'], resolve)
+                }, {
+                    path: '/menu/create',
+                    component: resolve => require(['../pages/menu/create.vue'], resolve)
+                }, {
+                    path: '/menu/edit',
+                    component: resolve => require(['../pages/menu/edit.vue'], resolve)
                 }, {
                     path: '/menuoption/user',
                     component: resolve => require(['../pages/menuOption/user.vue'], resolve)
@@ -58,6 +76,9 @@ export default new Router({
                     path: '/staff/index',
                     component: resolve => require(['../pages/staff/index.vue'], resolve)
                 }, {
+                    path: '/staff/create',
+                    component: resolve => require(['../pages/staff/create.vue'], resolve)
+                }, {
                     path: '/tag/index',
                     component: resolve => require(['../pages/tag/index.vue'], resolve)
                 }, {
@@ -69,6 +90,9 @@ export default new Router({
                 }, {
                     path: '/picture/user',
                     component: resolve => require(['../pages/picture/user.vue'], resolve)
+                }, {
+                    path: '/user/avater',
+                    component: resolve => require(['../pages/user/avatarUpload.vue'], resolve)
                 }
             ]
         },

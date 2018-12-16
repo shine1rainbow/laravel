@@ -3,6 +3,7 @@
         <div class="step-header">
             <el-steps :active="active" finish-status="success">
               <el-step title="添加店铺基础信息"></el-step>
+              <el-step title="开业时间"></el-step>
               <el-step title="上传LOGO"></el-step>
               <el-step title="上传背景LOGO"></el-step>
               <el-step title="商店介绍图"></el-step>
@@ -103,8 +104,90 @@
             </div>
         </div>
 
-        <!--上传logo-->
         <div v-else-if="active == 1">
+			<div class="business_hour">
+				<el-row :gutter="20">
+					<h4>周一</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周二</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周三</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周四</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周五</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周六</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+				<el-row :gutter="20">
+					<h4>周日</h4>
+					<el-time-picker
+						is-range
+						v-model="value4"
+						range-separator="至"
+						start-placeholder="开始时间"
+						end-placeholder="结束时间"
+						placeholder="选择时间范围">
+					</el-time-picker>
+				</el-row>
+			</div>
+        </div>
+
+        <!--上传logo-->
+        <div v-else-if="active == 2">
             <div style="margin: 20px auto; text-align: center">
               <el-upload
 				  ref="uploadRestaurantLogo"
@@ -126,7 +209,7 @@
         </div>
 
         <!--上传logo-->
-        <div v-else-if="active == 2">
+        <div v-else-if="active == 3">
             <div style="margin: 20px auto; text-align: center">
                 <el-upload
 				  ref="uploadAppLogo"
@@ -147,7 +230,7 @@
         </div>
 
         <!--上传商店介绍图-->
-        <div v-else="active == 3">
+        <div v-else="active == 4">
             <div style="margin: 20px auto; text-align: center">
 				<el-upload
 				  ref="uploadRestaurantImages"
@@ -176,6 +259,7 @@
   export default {
     data() {
       return {
+		value4: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
         active: 1,
         form: {
           restaurant_name: '',
@@ -191,6 +275,7 @@
           introduction: '',
           remind: '',
           activity: '',
+          business_hour: {},
           shop_status_id: '' 
         },
         rules: {
@@ -227,8 +312,8 @@
           vat_reg_no: [
             { required: true, message: '税号', trigger: 'blur' }
           ],
-          remain: [
-            { message: '温馨提示', trigger: 'blur' }
+          remaid: [
+            { required: true, message: '温馨提示', trigger: 'blur' }
           ],
           introduction: [
             { required: true, message: '介绍', trigger: 'blur' }
@@ -251,7 +336,6 @@
 
 	created() {
 		this.fetchShopStatuses()
-this.shop_id=11;
 	},
 
     methods: {
@@ -408,5 +492,8 @@ this.shop_id=11;
   }
   .basicInfo {
 	margin-top: 20px;
+  }
+  .business_hour {
+	margin: 20px auto;
   }
 </style>

@@ -14,6 +14,8 @@ import { Notification } from 'element-ui'
 import store from '../store'
 import systemConfig from './../env.js'
 import { decryptData } from './../utils/encrypt'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 /**
  * Create Axios
@@ -39,6 +41,8 @@ http.defaults.headers.common = {
 
 http.interceptors.request.use(config => {
 
+	NProgress.start()
+
     //在请求前添加认证头
     if (store.state.access_token != null) {
         config.headers.authorization = "Bearer " + store.state.access_token;
@@ -53,8 +57,17 @@ http.interceptors.request.use(config => {
     return config
 }, error => {
     // Do something with request error
+	NProgress.done()
     Promise.reject(error)
 })
+
+http.interceptors.response.use(function (response) {
+	NProgress.done()
+	return response;
+}, function (error) {
+	NProgress.done()
+	return Promise.reject(error);
+});
 
 http.interceptors.response.use(function (response) {
     return response;

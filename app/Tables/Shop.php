@@ -2,10 +2,34 @@
 
 namespace App\Tables;
 
+use App\Tables\Traits\InfoTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
+    use InfoTrait;
+
+    /**
+     * Json2Array
+     *
+     * @param string $value
+     * @return mixed
+     */
+    public function getBusinessHourAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    /**
+     * Array2json
+     *
+     * @param array $value
+     */
+    public function setBusinessHourAttribute(array $value)
+    {
+        $this->attributes['business_hour'] = json_encode($value);
+    }
+
     // 店铺一对多菜单
     public function menuTypes()
     {
@@ -16,6 +40,11 @@ class Shop extends Model
     public function staffs()
     {
         return $this->hasMany(Staff::class);
+    }
+
+    public function shop_qr()
+    {
+        return $this->hasOne(ShopQr::class);
     }
 
     // 店铺用户一对多反向关联

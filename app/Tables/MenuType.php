@@ -2,10 +2,13 @@
 
 namespace App\Tables;
 
+use App\Tables\Traits\InfoTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuType extends Model
 {
+    use InfoTrait;
+
     // 店铺(一对多)菜单(反向关联)
     public function shop()
     {

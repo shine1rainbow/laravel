@@ -18,18 +18,13 @@ function generateTree($items)
     $tree = [];
 
     foreach ($items as $item) {
-
         if ($item['pid'] != 0) {
-
             foreach ($tree as $k => & $v) {
-
                 if ($v['id'] == $item['pid']) {
                     $v['child'][] = $item;
                     $v['child'] = sortMultidimArray($v['child'], 'order', 'asc');
                 }
-
             }
-
         } else {
             array_push($tree, $item);
         }
@@ -58,13 +53,13 @@ function sortMultidimArray(array $list, string $field, string $sortby = 'asc')
         }
 
         switch ($sortby) {
-            case 'asc': // 正向排序
+            case 'asc':
                 asort($refer);
                 break;
-            case 'desc': // 逆向排序
+            case 'desc':
                 arsort($refer);
                 break;
-            case 'nat': // 自然排序
+            case 'nat':
                 natcasesort($refer);
                 break;
         }
@@ -74,7 +69,7 @@ function sortMultidimArray(array $list, string $field, string $sortby = 'asc')
         }
 
         return $resultSet;
-    }   
+    }
 
     return false;
 }

@@ -1,71 +1,77 @@
 <template>
-  <el-table
-    :data="tableData.filter(data => !search || data.restaurant_name.toLowerCase().includes(search.toLowerCase()))"
-    border
-    style="width: 100%">
+    <div>
+      <div class="toolbar">
+          <el-button type="primary" icon="el-icon-refresh" circle v-on:click="fetchTableData"></el-button>
+          <el-button type="success" icon="el-icon-plus" circle v-on:click="addMenu"></el-button>
+      </div>
 
-    <el-table-column
-      type="index"
-      width="50">
-    </el-table-column>
+      <el-table
+        :data="tableData.filter(data => !search || data.restaurant_name.toLowerCase().includes(search.toLowerCase()))"
+        border
+        style="width: 100%">
 
-    <el-table-column
-      label="menu_name"
-      prop="menu_name">
-    </el-table-column>
+        <el-table-column
+          type="index"
+          width="50">
+        </el-table-column>
 
-    <el-table-column
-      label="menu_no"
-      prop="menu_no">
-    </el-table-column>
+        <el-table-column
+          label="menu_name"
+          prop="menu_name">
+        </el-table-column>
 
-    <el-table-column
-      label="price"
-      prop="price">
-    </el-table-column>
+        <el-table-column
+          label="menu_no"
+          prop="menu_no">
+        </el-table-column>
 
-    <el-table-column
-      prop="menu_category_name"
-      label="menu_category_name"
-      width="180">
-    </el-table-column>
+        <el-table-column
+          label="price"
+          prop="price">
+        </el-table-column>
 
-    <el-table-column
-      label="avater"
-      prop="avater">
-    </el-table-column>
+        <el-table-column
+          prop="menu_category_name"
+          label="menu_category_name"
+          width="180">
+        </el-table-column>
 
-    <el-table-column
-      label="spicy"
-      prop="spicy">
-    </el-table-column>
+        <el-table-column
+          label="avater"
+          prop="avater">
+        </el-table-column>
 
-    <el-table-column
-      align="center"
-      width="200">
-      <template slot="header" slot-scope="scope">
-        <el-input
-          v-model="search"
-          size="mini"
-          placeholder="输入关键字搜索"/>
-      </template>
-      <template slot-scope="scope">
-        <el-button
-          size="mini"
-          type="success"
-          icon="el-icon-edit"
-          round
-          @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          icon="el-icon-delete" 
-          round
-          @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-      </template>
-    </el-table-column>
+        <el-table-column
+          label="spicy"
+          prop="spicy">
+        </el-table-column>
 
-  </el-table>
+        <el-table-column
+          align="center"
+          width="200">
+          <template slot="header" slot-scope="scope">
+            <el-input
+              v-model="search"
+              size="mini"
+              placeholder="输入关键字搜索"/>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="success"
+              icon="el-icon-edit"
+              round
+              @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              icon="el-icon-delete" 
+              round
+              @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 </template>
 
 <script>
@@ -86,6 +92,11 @@
 	},
 
     methods: {
+        
+      //添加菜单
+      addMenu() {
+        this.$router.push('/menu/create')
+      },
 
       //过滤标签
       filterTag(value, row) {
@@ -95,7 +106,7 @@
       //获取table数据
 	  fetchTableData() {
 		http({
-			url: ApiList.getMenuListByUserUrl,
+			url: ApiList.getUserMenuUrl,
 			method: 'get',
 		}).then(response => {
             let shops = response.data.data
@@ -146,3 +157,9 @@
 	}
   }
 </script>
+
+<style scoped>
+.toolbar {
+    margin: 10px 5px 10px 0;
+}
+</style>

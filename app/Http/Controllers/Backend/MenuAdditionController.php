@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\MenuAddition as MenuAdditionRequests;
 use App\Jobs\Backend\MenuAddition as MenuAdditionJobs;
 
-class MenutypeController extends Controller
+class MenuAdditionController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

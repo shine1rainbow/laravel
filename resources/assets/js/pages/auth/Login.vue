@@ -122,7 +122,7 @@
 
                 // send post ajax request
                 http({
-					url: ApiList.getTokenUrl, 
+					url: ApiList.getUserTokenUrl, 
 					method: 'post',
 					data: postData
 				}).then(response => {
