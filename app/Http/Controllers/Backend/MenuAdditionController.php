@@ -69,9 +69,9 @@ class MenuAdditionController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, MenuAdditionRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = $request->all();
         $params['id'] = $id;
         $response = $this->dispatch(new MenuAdditionJobs\UpdateJob($params));
         return $response;

@@ -18,5 +18,7 @@ export default {
     "deleteSuccess": '删除成功',
     "deleteCancel": '取消删除',
     "createSuccess": '添加成功',
-    "createCancel": '取消添加'
+    "createCancel": '取消添加',
+    "updateSuccess": '更新成功',
+    "updateCancel": '更新添加'
 }

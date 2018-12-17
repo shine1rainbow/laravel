@@ -65,16 +65,28 @@
 
     created() {
         this.fetchUserMenu()
+        this.fetchMenuAdditionData()
     },
 
     methods: {
+
+      fetchMenuAdditionData() {
+		http({
+			url: ApiList.getMenuAdditionDetailUrl + this.$route.params.id,
+			method: 'get',
+		}).then(response => {
+			this.form = response.data.data
+		}, response => {
+			console.log("fetch data error")
+		})
+      },
 
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({
-			  url: ApiList.storeMenuAdditionUrl,
-			  method: 'post',
+			  url: ApiList.updateMenuAdditionUrl + this.form.id,
+			  method: 'put',
 			  data: this.form
 			}).then(response => {
 			  if (response.data.code == 200) {

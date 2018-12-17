@@ -44,7 +44,7 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuTypeRequests\StoreRequest $request)
+    public function store(MenuRequests\StoreRequest $request)
     {
         $params = $request->all();
         $response = $this->dispatch(new MenuJobs\StoreJob($params));
@@ -69,9 +69,13 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, MenuRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = request()->only(
+            'id','menu_categroy_id', 'menu_name', 'menu_no', 'avater',
+            'detail_img', 'price', 'number', 'status','spicy',
+            'order', 'is_recommend', 'is_hot', 'introduction'
+        );
         $params['id'] = $id;
         $response = $this->dispatch(new MenuJobs\UpdateJob($params));
         return $response;

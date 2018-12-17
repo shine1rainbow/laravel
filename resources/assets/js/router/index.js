@@ -61,14 +61,20 @@ export default new Router({
                     path: '/menu/create',
                     component: resolve => require(['../pages/menu/create.vue'], resolve)
                 }, {
-                    path: '/menu/edit',
-                    component: resolve => require(['../pages/menu/edit.vue'], resolve)
+                    path: '/menu/show/:id',
+                    component: resolve => require(['../pages/menu/show.vue'], resolve)
                 }, {
                     path: '/menuoption/user',
                     component: resolve => require(['../pages/menuOption/user.vue'], resolve)
                 }, {
                     path: '/menuaddition/user',
                     component: resolve => require(['../pages/menuAddition/user.vue'], resolve)
+                }, {
+                    path: '/menuaddition/create',
+                    component: resolve => require(['../pages/menuAddition/create.vue'], resolve)
+                }, {
+                    path: '/menuaddition/show/:id',
+                    component: resolve => require(['../pages/menuAddition/show.vue'], resolve)
                 }, {
                     path: '/staff/user',
                     component: resolve => require(['../pages/staff/user.vue'], resolve)

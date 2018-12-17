@@ -84,9 +84,19 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 		//菜单管理
 		Route::group(['prefix' => 'menu'], function () {
 			Route::post('/', 'MenuController@store');
+			Route::get('{id}', 'MenuController@show');
 			Route::get('user', 'MenuController@user');
 			Route::put('{id}', 'MenuController@update');
 			Route::delete('{id}', 'MenuController@destroy');
+		});
+
+		//附加菜管理
+		Route::group(['prefix' => 'menuaddition'], function () {
+			Route::post('/', 'MenuAdditionController@store');
+			Route::get('{id}', 'MenuAdditionController@show');
+			Route::get('user', 'MenuAdditionController@user');
+			Route::put('{id}', 'MenuAdditionController@update');
+			Route::delete('{id}', 'MenuAdditionController@destroy');
 		});
 
 		//管理

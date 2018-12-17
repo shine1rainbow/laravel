@@ -35,13 +35,12 @@ class ShowJob
      */
     public function handle()
     {
-        $menu = Menu::join('menu_additions', 'menus.id', '=', 'menu_additions.menu_id')
-            ->join('menu_options', 'menus.id', '=', 'menu_options.menu_id')
+        $menu = Menu::leftjoin('menu_additions', 'menus.id', '=', 'menu_additions.menu_id')
+            ->leftjoin('menu_options', 'menus.id', '=', 'menu_options.menu_id')
             ->select(
                 'menus.*',
                 'menu_options.name as menu_options_name', 'menu_options.info as menu_options_info',
-                'menu_options.introduction as menu_options_introduction', 'menu_additions.introduction as menu_additions_introduction',
-                'menu_additions.name as menu_additions_name', 'menu_additions.info as menu_additions_info'
+                'menu_options.introduction as menu_options_introduction', 'menu_additions.name as menu_additions_name'
             )->find($this->id);
 
         if (is_null($menu)) {

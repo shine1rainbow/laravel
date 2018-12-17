@@ -144,22 +144,37 @@
 
     created() {
         this.fetchUserMenuCategory()
+        this.fetchMenuData()
     },
 
     methods: {
+
+      //获取菜单
+      fetchMenuData() {
+
+          http({
+              url: ApiList.getMenuDetailUrl + this.$route.params.id,
+              method: 'get',
+          }).then(response => {
+              this.form = response.data.data
+              //this.form.images = response.data.data.images.split(',')
+          }, response => {
+              console.log("fetch data error")
+          })
+      },
 
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({
-			  url: ApiList.storeMenuUrl,
-			  method: 'post',
+			  url: ApiList.updateMenuUrl + this.form.id,
+			  method: 'put',
 			  data: this.form
 			}).then(response => {
 			  if (response.data.code == 200) {
                   this.$notify({
                       type: 'success',
-                      message: this.$i18n.t("common.createSuccess")
+                      message: this.$i18n.t("common.updateSuccess")
                   });
 				  this.$router.push('/menu/user')
 			  }

@@ -7,10 +7,11 @@
 */
 
 const ApiList = {
-    'getTokenUrl': '/oauth/token',
+    'getUserTokenUrl': '/oauth/token',
     'getUserInfoUrl': 'api/v1/backend/user/info',
-    'getPermissionUrl': 'api/v1/backend/user/permission',
-    'getStaffUrl': 'api/v1/backend/user/staff',
+    'getUserPermissionUrl': 'api/v1/backend/user/permission',
+    'getUserShopUrl': 'api/v1/backend/user/shop',
+    'getUserStaffUrl': 'api/v1/backend/user/staff',
     'getUserMenuTypeUrl': 'api/v1/backend/user/menutype',
     'getUserMenuCategoryUrl': 'api/v1/backend/user/menucategory',
     'getUserMenuUrl': 'api/v1/backend/user/menu',
@@ -30,17 +31,27 @@ const ApiList = {
     'getMenuCategoryListByUserUrl': 'api/v1/backend/user/menucategory',
     'getMenuListByUserUrl': 'api/v1/backend/user/menu',
 
+    'getMenuDetailUrl': 'api/v1/backend/menu/',
     'updateMenuUrl': 'api/v1/backend/menu/',
     'deleteMenuUrl': 'api/v1/backend/menu/',
     'storeMenuUrl': 'api/v1/backend/menu',
 
+    'getMenuCategoryDetailUrl': 'api/v1/backend/menucategory/',
     'updateMenuCategoryUrl': 'api/v1/backend/menucategory/',
     'deleteMenuCategoryUrl': 'api/v1/backend/menucategory/',
     'storeMenuCategoryUrl': 'api/v1/backend/menucategory',
 
+    'getMenuTypeDetailUrl': 'api/v1/backend/menutype/',
     'updateMenuTypeUrl': 'api/v1/backend/menutype/',
     'deleteMenuTypeUrl': 'api/v1/backend/menutype/',
     'storeMenuTypeUrl': 'api/v1/backend/menutype',
+
+    'getMenuAdditionDetailUrl': 'api/v1/backend/menuaddition/',
+    'updateMenuAdditionUrl': 'api/v1/backend/menuaddition/',
+    'deleteMenuAdditionUrl': 'api/v1/backend/menuaddition/',
+    'storeMenuAdditionUrl': 'api/v1/backend/menuaddition',
+
+    'storeStaffUrl': 'api/v1/backend/staff',
 
     'getTagListUrl': 'api/v1/backend/tag',
     'storeTagUrl': 'api/v1/backend/tag',
