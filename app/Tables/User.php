@@ -75,4 +75,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Shop::class);
     }
+
+    /**
+     * 一对多关联
+     */
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 }

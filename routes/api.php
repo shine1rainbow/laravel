@@ -29,10 +29,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 		Route::group(['prefix' => 'user'], function () {
 			Route::get('info', 'UserController@info');
 			Route::get('menutype', 'UserController@getMenuTypeByUser');
+			Route::get('picture', 'UserController@getPictureByUser');
 			Route::get('menucategory', 'UserController@getMenuCategoryByUser');
 			Route::get('menu', 'UserController@getMenuByUser');
 			Route::get('menuoption', 'UserController@getMenuOptionByUser');
 			Route::get('menuaddition', 'UserController@getMenuAdditionByUser');
+			Route::get('tag', 'UserController@getTagByUser');
 			Route::get('staff', 'UserController@getStaffByUser');
 			Route::get('shop', 'UserController@getShopByUser');
 			Route::get('permission', 'UserController@getPermissionByUserId');
@@ -130,6 +132,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 		//图片管理
 		Route::group(['prefix' => 'picture'], function () {
 			Route::post('getUploadPath', 'PictureController@getUploadPath');
+			Route::get('/', 'PictureController@index');
+			Route::post('/', 'PictureController@store');
+			Route::get('{id}', 'PictureController@show');
+			Route::put('{id}', 'PictureController@update');
+			Route::delete('{id}', 'PictureController@destroy');
 		});
 
 	});

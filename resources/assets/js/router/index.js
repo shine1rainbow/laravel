@@ -106,6 +106,12 @@ export default new Router({
                     path: '/picture/user',
                     component: resolve => require(['../pages/picture/user.vue'], resolve)
                 }, {
+                    path: '/picture/create',
+                    component: resolve => require(['../pages/picture/create.vue'], resolve)
+                }, {
+                    path: '/picture/show/:id',
+                    component: resolve => require(['../pages/picture/show.vue'], resolve)
+                }, {
                     path: '/user/avater',
                     component: resolve => require(['../pages/user/avatarUpload.vue'], resolve)
                 }

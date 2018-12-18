@@ -11,4 +11,10 @@ class Picture extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+
+    // 照片(一对多)用户(反向关联)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

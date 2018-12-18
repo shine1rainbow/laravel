@@ -49,12 +49,14 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        $filePath = request()->file->store('images', 'public');
-        $fileFullPath = url('storage') . '/' . $filePath;
+        //$filePath = request()->file->store('images', 'public');
+        //$fileFullPath = url('storage') . '/' . $filePath;
+        //$params['url'] = $fileFullPath;
         $params['url'] = request()->input('url');
         $params['tag_id'] = request()->input('tag_id');
         $params['order'] = is_null(request()->input('order')) ?? 1;
         $params['desc'] = is_null(request()->input('desc')) ?? '';
+        $params['user_id'] = request()->user()->id ?? 0;
         $response = $this->dispatch(new PictureJobs\StoreJob($params));
         return response()->json($response);
     }
@@ -91,15 +93,17 @@ class PictureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $filePath = request()->file->store('images', 'local');
-        $fileFullPath = storage_path('app') . '/' . $filePath;
+        //$filePath = request()->file->store('images', 'public');
+        //$fileFullPath = url('storage') . '/' . $filePath;
+        //$params['url'] = $fileFullPath;
         $params['id'] = $id;
         $params['url'] = request()->input('url');
         $params['tag_id'] = request()->input('tag_id');
         $params['order'] = is_null(request()->input('order')) ?? 1;
         $params['desc'] = is_null(request()->input('desc')) ?? '';
+        $params['user_id'] = request()->user()->id ?? 0;
         $response = $this->dispatch(new PictureJobs\UpdateJob($params));
-        return response()->json($response);
+        return $response;
     }
 
     /**

@@ -22,6 +22,7 @@ const ApiList = {
     'getShopListUrl': 'api/v1/backend/shop',
     'getShopDetailUrl': 'api/v1/backend/shop/',
     'deleteShopUrl': 'api/v1/backend/shop/',
+    'updateShopUrl': 'api/v1/backend/shop/',
     'storeShopUrl': 'api/v1/backend/shop',
     'uploadShopImgUrl': 'api/v1/backend/shop/uploadImg',
 
@@ -51,7 +52,15 @@ const ApiList = {
     'deleteMenuAdditionUrl': 'api/v1/backend/menuaddition/',
     'storeMenuAdditionUrl': 'api/v1/backend/menuaddition',
 
+    'getMenuOptionDetailUrl': 'api/v1/backend/menuoption/',
+    'updateMenuOptionUrl': 'api/v1/backend/menuoption/',
+    'deleteMenuOptionUrl': 'api/v1/backend/menuoption/',
+    'storeMenuOptionUrl': 'api/v1/backend/menuoption',
+
     'storeStaffUrl': 'api/v1/backend/staff',
+    'getStaffDetailUrl': 'api/v1/backend/staff/',
+    'updateStaffUrl': 'api/v1/backend/staff/',
+    'deleteStaffUrl': 'api/v1/backend/staff/',
 
     'getTagListUrl': 'api/v1/backend/tag',
     'storeTagUrl': 'api/v1/backend/tag',

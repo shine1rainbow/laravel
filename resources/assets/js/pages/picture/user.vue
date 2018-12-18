@@ -1,145 +1,156 @@
 <template>
-	<div>
-		<div class="upload-control">
-			<el-upload
-				action="test"
-				:http-request="uploadImg"
-				list-type="picture-card"
-				:limit="1"
-				:on-preview="handlePicturePreview"
-				:on-remove="handlePictureRemove">
-				<i class="el-icon-plus" style="margin-top: 52px"></i>
-			</el-upload>
-		</div>
-		<div>
-			<el-form :label-position="labelPosition" label-width="80px" :model="left">
-			  <el-form-item label="图片URL">
-				<el-input v-model="pictureForm.url"></el-input>
-			  </el-form-item>
-			  <el-form-item label="图片标签">
-				<el-select v-model="pictureForm.tag_id" placeholder="请选择">
-				  <el-option v-for="tag in tags" :key="tag.id" :label="tag.name" :value="tag.id"></el-option>
-				 </el-select>
-			  </el-form-item>
-			  <el-form-item label="图片描述">
-				<el-input v-model="pictureForm.desc"></el-input>
-			  </el-form-item>
-			</el-form>
-		</div>
+    <div>
+      <div class="toolbar">
+          <el-button type="primary" icon="el-icon-refresh" circle v-on:click="fetchTableData"></el-button>
+          <el-button type="success" icon="el-icon-plus" circle v-on:click="uploadPicture"></el-button>
+      </div>
 
-		<el-row>
-		  <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
-			<el-card :body-style="{ padding: '0px' }">
-			  <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
-			  <div style="padding: 14px;">
-				<span>好吃的汉堡</span>
-				<div class="bottom clearfix">
-				  <time class="time">{{ currentDate }}</time>
-				  <el-button type="text" class="button">操作按钮</el-button>
-				</div>
-			  </div>
-			</el-card>
-		  </el-col>
-		</el-row>
-	</div>
+      <el-table
+        :data="tableData"
+        border
+        style="width: 100%">
+
+        <el-table-column
+          type="index"
+          width="50">
+        </el-table-column>
+
+        <el-table-column
+          label="url"
+          prop="url">
+            <template slot-scope="scope">
+                <img :src="scope.row.url" alt="picture" style="width: 50px;height: 50px">
+            </template>
+        </el-table-column>
+
+        <el-table-column
+          label="desc"
+          prop="desc">
+        </el-table-column>
+
+        <el-table-column
+          label="tag_name"
+          prop="tag_name">
+        </el-table-column>
+
+        <el-table-column
+          label="order"
+          prop="order">
+        </el-table-column>
+
+        <el-table-column
+          align="center"
+          width="200">
+          <template slot="header" slot-scope="scope">
+            <el-input
+              v-model="search"
+              size="mini"
+              placeholder="输入关键字搜索"/>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="success"
+              icon="el-icon-edit"
+              round
+              @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              icon="el-icon-delete" 
+              round
+              @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 </template>
 
 <script>
   import { http } from './../../utils/fetch'
   import ApiList from './../../config'
 
-export default {
-  data() {
-    return {
-	  dialogPictureUrl: '',
-	  dialogPictureVisible: false,
-      currentDate: new Date(),
-      pictureForm: {
-          order: '',
-          desc: '',
-          tag_id: '',
-          url: ''
-	  },
-	  tags: [],
-    };
-  },
+  export default {
+    data() {
+      return {
+        tableData: [],
+        tableStatusFilter: [],
+        search: ''
+      }
+    },
 
-  created() {
-	this.fetchUserTagList()
-  },
+	created() {
+	  this.fetchTableData()
+	},
 
-  methods: {
-      handlePictureRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePicturePreview(file) {
-        this.dialogPictureUrl = file.url;
-		console.log(this.dialogPictureUrl);
-        this.dialogPictureVisible = true;
+    methods: {
+
+      uploadPicture() {
+        this.$router.push('/picture/create')
       },
 
-  	  //获取用户标签列表
-	  fetchUserTagList() {
+      //过滤标签
+      filterTag(value, row) {
+        return row.shop_status_name === value;
+      },
+
+      //获取table数据
+	  fetchTableData() {
 		http({
-			url: ApiList.getTagListByUserUrl,
+			url: ApiList.getUserPictureUrl,
 			method: 'get',
 		}).then(response => {
-			this.tags = response.data.data.tableData
+            console.log(response.data)
+			this.tableData = response.data.data
 		}, response => {
 			console.log("fetch data error")
 		})
 	  },
 
-      uploadImg (param) {
+      //编辑操作
+      handleEdit(index, row) {
+        this.$router.push('/picture/show/' + row.id)
+      },
 
-        let formData = new FormData()
-        formData.append('file', param.file)
+      //删除操作
+      handleDelete(index, row) {
+		
+        this.$confirm(this.$i18n.t("common.deleteConfirm"), this.$i18n.t("common.prompt"), {
+          confirmButtonText: this.$i18n.t("common.sure"),
+          cancelButtonText: this.$i18n.t("common.cancel"),
+          type: 'warning'
+        }).then(() => {
 
-		http({
-			url: ApiList.uploadPictureUrl,
-			method: 'post',
-            data: formData
-		}).then(response => {
-            console.log(response.data)
-		}, response => {
-			console.log("fetch data error")
-		})
-	  }
+			//删除店铺
+			http({
+				url: ApiList.deletePictureUrl + row.id,
+				method: 'delete',
+			}).then(response => {
+				if (response.data.code == '200') {
+					this.$message({
+						type: 'success',
+						message: this.$i18n.t("common.deleteSuccess")
+					});
+                    this.fetchTableData()
+				}
+			}, response => {
+				console.log("fetch data error")
+			})
+
+        }).catch(() => {
+
+          this.$message({
+            type: 'info',
+            message: this.$i18n.t("common.deleteCancel")
+          });          
+
+        });
+	  },
+	}
   }
-}
 </script>
-
-<style>
-  .time {
-    font-size: 13px;
-    color: #999;
-  }
-  
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
-
-  .button {
-    padding: 0;
-    float: right;
-  }
-
-  .image {
-    width: 100%;
-    display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
-  .el-upload__input {
-	display: none !important
-  }
+<style scoped>
+.toolbar {
+    margin: 10px 5px 10px 0;
+}
 </style>

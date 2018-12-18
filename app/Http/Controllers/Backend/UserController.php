@@ -205,4 +205,30 @@ class UserController extends Controller
         $response = $this->dispatch(new UserJobs\GetStaffByUserJob($user));
         return $response;
     }
+
+    /**
+     * Get User picture
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getPictureByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetPictureByUserJob($user));
+        return $response;
+    }
+
+    /**
+     * Get User tag
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return json $response
+     */
+    public function getTagByUser()
+    {
+        $user = request()->user();
+        $response = $this->dispatch(new UserJobs\GetTagByUserJob($user));
+        return $response;
+    }
 }
