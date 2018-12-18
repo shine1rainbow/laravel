@@ -76,9 +76,19 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
         //一级菜单管理
 		Route::group(['prefix' => 'menutype'], function () {
 			Route::get('user', 'MenuTypeController@user');
+			Route::get('{id}', 'MenuTypeController@show');
 			Route::put('{id}', 'MenuTypeController@update');
 			Route::delete('{id}', 'MenuTypeController@destroy');
 			Route::post('/', 'MenuTypeController@store');
+		});
+
+		//管理
+		Route::group(['prefix' => 'menucategory'], function () {
+			Route::post('/', 'MenuCategoryController@store');
+			Route::get('{id}', 'MenuCategoryController@show');
+			Route::get('user', 'MenuCategoryController@user');
+			Route::put('{id}', 'MenuCategoryController@update');
+			Route::delete('{id}', 'MenuCategoryController@destroy');
 		});
 
 		//菜单管理
@@ -99,18 +109,20 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 			Route::delete('{id}', 'MenuAdditionController@destroy');
 		});
 
-		//管理
-		Route::group(['prefix' => 'menucategory'], function () {
-			Route::post('/', 'MenuCategoryController@store');
-			Route::get('user', 'MenuCategoryController@user');
-			Route::put('{id}', 'MenuCategoryController@update');
-			Route::delete('{id}', 'MenuCategoryController@destroy');
+		//配菜管理
+		Route::group(['prefix' => 'menuoption'], function () {
+			Route::post('/', 'MenuOptionController@store');
+			Route::get('{id}', 'MenuOptionController@show');
+			Route::get('user', 'MenuOptionController@user');
+			Route::put('{id}', 'MenuOptionController@update');
+			Route::delete('{id}', 'MenuOptionController@destroy');
 		});
 
 		//员工
 		Route::group(['prefix' => 'staff'], function () {
 			Route::post('/', 'StaffController@store');
 			Route::put('{id}', 'StaffController@update');
+			Route::get('{id}', 'StaffController@show');
 			Route::delete('{id}', 'StaffController@destroy');
 		});
 

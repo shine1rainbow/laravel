@@ -69,9 +69,9 @@ class MenuCategoryController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, MenuCategoryRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = $request->all();
         $params['id'] = $id;
         $response = $this->dispatch(new MenuCategoryJobs\UpdateJob($params));
         return $response;

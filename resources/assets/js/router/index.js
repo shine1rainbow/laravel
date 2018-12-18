@@ -43,8 +43,8 @@ export default new Router({
                     path: '/menutype/create',
                     component: resolve => require(['../pages/menuType/create.vue'], resolve)
                 }, {
-                    path: '/menutype/edit',
-                    component: resolve => require(['../pages/menuType/edit.vue'], resolve)
+                    path: '/menutype/show/:id',
+                    component: resolve => require(['../pages/menuType/show.vue'], resolve)
                 }, {
                     path: '/menucategory/user',
                     component: resolve => require(['../pages/menuCategory/user.vue'], resolve)
@@ -52,8 +52,8 @@ export default new Router({
                     path: '/menucategory/create',
                     component: resolve => require(['../pages/menuCategory/create.vue'], resolve)
                 }, {
-                    path: '/menucategory/edit',
-                    component: resolve => require(['../pages/menuCategory/edit.vue'], resolve)
+                    path: '/menucategory/show/:id',
+                    component: resolve => require(['../pages/menuCategory/show.vue'], resolve)
                 }, {
                     path: '/menu/user',
                     component: resolve => require(['../pages/menu/user.vue'], resolve)
@@ -66,6 +66,12 @@ export default new Router({
                 }, {
                     path: '/menuoption/user',
                     component: resolve => require(['../pages/menuOption/user.vue'], resolve)
+                }, {
+                    path: '/menuoption/create',
+                    component: resolve => require(['../pages/menuOption/create.vue'], resolve)
+                }, {
+                    path: '/menuoption/show/:id',
+                    component: resolve => require(['../pages/menuOption/show.vue'], resolve)
                 }, {
                     path: '/menuaddition/user',
                     component: resolve => require(['../pages/menuAddition/user.vue'], resolve)
@@ -84,6 +90,9 @@ export default new Router({
                 }, {
                     path: '/staff/create',
                     component: resolve => require(['../pages/staff/create.vue'], resolve)
+                }, {
+                    path: '/staff/show/:id',
+                    component: resolve => require(['../pages/staff/show.vue'], resolve)
                 }, {
                     path: '/tag/index',
                     component: resolve => require(['../pages/tag/index.vue'], resolve)

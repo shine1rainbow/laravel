@@ -33,9 +33,9 @@ class DestroyJob
      */
     public function handle()
     {
-        $menuOptions = MenuOption::delete($this->id);
+        $menuOption = MenuOption::find($this->id);
 
-        if (empty($menuOptions)) {
+        if (empty($menuOption)) {
 
             $response = [
                 'code' => trans('pheicloud.response.notExist.code'),
@@ -45,6 +45,8 @@ class DestroyJob
 
             return response()->json($response);
         }
+
+        $menuOption->delete();
 
         $response = [
             'code' => trans('pheicloud.response.success.code'),

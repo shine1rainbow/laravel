@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'id' => 'required|integer',
             'name' => 'required|string',
             'shop_id' => 'required|integer',
-            'is_recommend' => 'required|string',
+            'is_recommend' => 'required',
             'is_hot' => 'required|string',
             'opening_time' => 'required|string',
             'serving_time' => 'required|string',

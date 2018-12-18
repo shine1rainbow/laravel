@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Backend\MenuCategory;
+namespace App\Http\Requests\Backend\MenuOption;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer',
             'name' => 'required|string',
-            'menu_type_id' => 'required|integer',
-            'is_recommend' => 'required|string',
-            'is_hot' => 'required|string',
-            'introduction' => 'string',
-            'order' => 'integer',
+            'menu_id' => 'required|integer',
+            'introduction' => 'required|string',
         ];
     }
 }

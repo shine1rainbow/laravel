@@ -136,6 +136,7 @@
 						type: 'success',
 						message: this.$i18n.t("common.deleteSuccess")
 					});
+                    this.fetchTableData()
 				}
 			}, response => {
 				console.log("fetch data error")

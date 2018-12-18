@@ -85,10 +85,11 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, ShopRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = $request->all();
         $params['id'] = $id;
+        $params['images'] = implode(',', $params['images']);
         $response = $this->dispatch(new ShopJobs\UpdateJob($params));
         return $response;
     }

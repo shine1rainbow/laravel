@@ -13,19 +13,13 @@
 			</el-select>
 		  </el-form-item>
 
-		  <el-form-item label="价格" prop="price">
-            <el-input v-model="form.price"></el-input>
-		  </el-form-item>
-
-		  <el-form-item label="数量" prop="count">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.count"></el-input>
-			</el-col>
-		  </el-form-item>
+          <el-form-item label="介绍" prop="introduction">
+            <el-input type="textarea" v-model="form.introduction"></el-input>
+          </el-form-item>
 
 		  <el-form-item>
               <el-button type="success" @click="submitForm('form')" size="small">保存</el-button>
-              <el-button @click="backMenuAdditionList" size="small">取消</el-button>
+              <el-button @click="backMenuOptionList" size="small">取消</el-button>
 		  </el-form-item>
 		</el-form>
 	</div>
@@ -39,25 +33,21 @@
   export default {
     data() {
       return {
-        menus: [],
+        menuTypes: [],
         form: {
           name: '',
           menu_id: '',
-          price: 0,
-          count: 1,
+          introduction: '',
         },
         rules: {
           name: [
             { required: true, message: '名称', trigger: 'blur' },
           ],
           menu_id: [
-            { required: true, message: '请选择菜品', trigger: 'change' }
+            { required: true, message: '请选择上级菜单', trigger: 'change' }
           ],
-          count: [
-            { required: true, message: '请输入数量', trigger: 'change' }
-          ],
-          price: [
-            { required: true, message: '请输入价格', trigger: 'change' }
+          introduction: [
+            { required: true, message: '请排序', trigger: 'change' }
           ]
         }
       };
@@ -65,14 +55,14 @@
 
     created() {
         this.fetchUserMenu()
-        this.fetchMenuAdditionData()
+        this.fetchMenuOptionData()
     },
 
     methods: {
 
-      fetchMenuAdditionData() {
+      fetchMenuOptionData() {
 		http({
-			url: ApiList.getMenuAdditionDetailUrl + this.$route.params.id,
+			url: ApiList.getMenuOptionDetailUrl + this.$route.params.id,
 			method: 'get',
 		}).then(response => {
 			this.form = response.data.data
@@ -85,16 +75,16 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({
-			  url: ApiList.updateMenuAdditionUrl + this.$route.params.id,
+			  url: ApiList.updateMenuOptionUrl + this.$route.params.id,
 			  method: 'put',
 			  data: this.form
 			}).then(response => {
 			  if (response.data.code == 200) {
                   this.$notify({
                       type: 'success',
-                      message: this.$i18n.t("common.createSuccess")
+                      message: this.$i18n.t("common.updateSuccess")
                   });
-				  this.$router.push('/menuaddition/user')
+				  this.$router.push('/menuoption/user')
 			  }
 			}, response => {
 			  console.log("fetch data error")
@@ -116,8 +106,8 @@
 		})
 	  },
 
-	  backMenuAdditionList() {
-		this.$router.push('/menuaddition/user')
+	  backMenuOptionList() {
+		this.$router.push('/menuoption/user')
 	  },
     }
   }

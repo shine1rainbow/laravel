@@ -5,6 +5,7 @@ namespace App\Jobs\Backend\MenuCategory;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Tables\MenuCategory;
+use App\Tables\Menu;
 use stdClass;
 
 class DestroyJob
@@ -33,7 +34,7 @@ class DestroyJob
      */
     public function handle()
     {
-        $menuCategory = MenuCategory::delete($this->id);
+        $menuCategory = MenuCategory::find($this->id);
 
         if (empty($menuCategory)) {
 
@@ -45,6 +46,11 @@ class DestroyJob
 
             return response()->json($response);
         }
+
+        $menuCategory->delete();
+
+        //关联删除
+        Menu::where('menu_category_id', '=', $this->id)->delete();
 
         $response = [
             'code' => trans('pheicloud.response.success.code'),

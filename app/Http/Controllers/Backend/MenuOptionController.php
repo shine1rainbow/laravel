@@ -44,7 +44,7 @@ class MenuOptionController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuOptionTypeRequests\StoreRequest $request)
+    public function store(MenuOptionRequests\StoreRequest $request)
     {
         $params = $request->all();
         $response = $this->dispatch(new MenuOptionJobs\StoreJob($params));
@@ -69,9 +69,9 @@ class MenuOptionController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, MenuOptionRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = $request->all();
         $params['id'] = $id;
         $response = $this->dispatch(new MenuOptionJobs\UpdateJob($params));
         return $response;

@@ -37,11 +37,11 @@ class UpdateRequest extends FormRequest
             'service_charge' => 'string',
             'payment_sequence' => 'string',
             'vat_reg_no' => 'string',
-            'images' => 'string',
+            'images' => 'array',
             'introduction' => 'string',
             'remind' => 'string',
             'activity' => 'string',
-            'business_hour' => 'string',
+            'business_hour' => 'string|nullable',
         ];
     }
 }

@@ -8,10 +8,6 @@
 				<div class="box-body">
 					<el-form ref="form" :model="form" label-width="80px" >
 
-					  <el-form-item label="ID">
-						<el-input v-model="form.id"></el-input>
-					  </el-form-item>
-
 					  <el-form-item label="商家名称">
 						<el-input v-model="form.restaurant_name"></el-input>
 					  </el-form-item>
@@ -78,7 +74,7 @@
 					  </el-form-item>
 
 					  <el-form-item>
-                        <el-button size="small" type="success" @click="onSubmit">更新</el-button>
+                        <el-button size="small" type="success" @click="onSubmit('form')">更新</el-button>
 				        <el-button size="small" @click="backUserShopList">取消</el-button>
 					  </el-form-item>
 					</el-form>
@@ -119,8 +115,28 @@
 
     methods: {
 
-      onSubmit() {
-        console.log('submit!')
+      onSubmit(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+			http({
+			  url: ApiList.updateShopUrl + this.$route.params.id,
+			  method: 'put',
+			  data: this.form
+			}).then(response => {
+			  if (response.data.code == 200) {
+                  this.$notify({
+                      type: 'success',
+                      message: this.$i18n.t("common.updateSuccess")
+                  });
+				  this.$router.push('/shop/user')
+			  }
+			}, response => {
+			  console.log("fetch data error")
+			})
+          } else {
+            return false;
+          }
+        });
       },
 
 	  backUserShopList() {
@@ -135,8 +151,6 @@
 			method: 'get',
 		}).then(response => {
 			this.form = response.data.data
-			this.form.images = response.data.data.images.split(',')
-            console.log(this.form.images)
 		}, response => {
 			console.log("fetch data error")
 		})

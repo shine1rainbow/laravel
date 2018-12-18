@@ -33,7 +33,7 @@ class DestroyJob
      */
     public function handle()
     {
-        $menuAddition = MenuAddition::delete($this->id);
+        $menuAddition = MenuAddition::find($this->id);
 
         if (empty($menuAddition)) {
 
@@ -45,6 +45,8 @@ class DestroyJob
 
             return response()->json($response);
         }
+
+        $menuAddition->delete();
 
         $response = [
             'code' => trans('pheicloud.response.success.code'),

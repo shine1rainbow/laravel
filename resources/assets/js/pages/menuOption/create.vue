@@ -1,15 +1,15 @@
 <template>
 	<div>
 		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form">
-		  <el-form-item label="菜单名称" prop="name">
+		  <el-form-item label="加菜" prop="name">
 			<el-col :span="6">
 				<el-input v-model="form.name"></el-input>
 			</el-col>
 		  </el-form-item>
 
-		  <el-form-item label="一级菜单" prop="menu_type_id">
-			<el-select v-model="form.menu_type_id" placeholder="选择一级菜单">
-			  <el-option v-for="menuType in menuTypes" :label="menuType.name" :value="menuType.id" :key="menuType.id"></el-option>
+		  <el-form-item label="菜品" prop="menu_id">
+			<el-select v-model="form.menu_id" placeholder="选择菜品">
+			  <el-option v-for="menu in menus" :label="menu.menu_name" :value="menu.id" :key="menu.id"></el-option>
 			</el-select>
 		  </el-form-item>
 
@@ -17,35 +17,9 @@
             <el-input type="textarea" v-model="form.introduction"></el-input>
           </el-form-item>
 
-		  <el-form-item label="排序" prop="order">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.order"></el-input>
-			</el-col>
-		  </el-form-item>
-
-		  <el-form-item label="是否热搜" required>
-			<el-switch
-				v-model="form.is_hot"
-				active-color="#13ce66"
-				inactive-color="#ff4949"
-				active-value="1"
-				inactive-value="0">
-			</el-switch>
-		  </el-form-item>
-
-		  <el-form-item label="是否推荐" required>
-			<el-switch
-				v-model="form.is_recommend"
-				active-color="#13ce66"
-				inactive-color="#ff4949"
-				active-value="1"
-				inactive-value="0">
-			</el-switch>
-		  </el-form-item>
-
 		  <el-form-item>
               <el-button type="success" @click="submitForm('form')" size="small">保存</el-button>
-              <el-button @click="backMenuCategoryList" size="small">取消</el-button>
+              <el-button @click="backMenuOptionList" size="small">取消</el-button>
 		  </el-form-item>
 		</el-form>
 	</div>
@@ -62,37 +36,25 @@
         menuTypes: [],
         form: {
           name: '',
-          menu_type_id: '',
-          order: 1,
+          menu_id: '',
           introduction: '',
-          is_recommend: false,
-          is_hot: false,
         },
         rules: {
           name: [
             { required: true, message: '名称', trigger: 'blur' },
           ],
-          menu_type_id: [
+          menu_id: [
             { required: true, message: '请选择上级菜单', trigger: 'change' }
           ],
-          order: [
-            { required: true, message: '请排序', trigger: 'change' }
-          ],
           introduction: [
-            { required: true, message: '请选择时间', trigger: 'change' }
-          ],
-          is_hot: [
-            { required: true, message: '是否热搜', trigger: 'change' }
-          ],
-          is_recommend: [
-            { required: true, message: '是否推荐', trigger: 'change' }
+            { required: true, message: '请排序', trigger: 'change' }
           ]
         }
       };
     },
 
     created() {
-        this.fetchUserMenuType()
+        this.fetchUserMenu()
     },
 
     methods: {
@@ -101,7 +63,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({
-			  url: ApiList.storeMenuCategoryUrl,
+			  url: ApiList.storeMenuOptionUrl,
 			  method: 'post',
 			  data: this.form
 			}).then(response => {
@@ -110,7 +72,7 @@
                       type: 'success',
                       message: this.$i18n.t("common.createSuccess")
                   });
-				  this.$router.push('/menucategory/user')
+				  this.$router.push('/menuoption/user')
 			  }
 			}, response => {
 			  console.log("fetch data error")
@@ -121,19 +83,19 @@
         });
       },
 
-	  fetchUserMenuType() {
+	  fetchUserMenu() {
 		http({
-			url: ApiList.getUserMenuTypeUrl,
+			url: ApiList.getUserMenuUrl,
 			method: 'get',
 		}).then(response => {
-            this.menuTypes = response.data.data
+            this.menus = response.data.data
 		}, response => {
 			console.log("fetch data error")
 		})
 	  },
 
-	  backMenuCategoryList() {
-		this.$router.push('/menucategory/user')
+	  backMenuOptionList() {
+		this.$router.push('/menuoption/user')
 	  },
     }
   }

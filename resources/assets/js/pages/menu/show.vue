@@ -157,6 +157,9 @@
               method: 'get',
           }).then(response => {
               this.form = response.data.data
+              this.form.is_hot = response.data.data.is_hot.toString()
+              this.form.is_recommend = response.data.data.is_recommend.toString()
+              this.form.status = response.data.data.status.toString()
               //this.form.images = response.data.data.images.split(',')
           }, response => {
               console.log("fetch data error")
@@ -167,7 +170,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({
-			  url: ApiList.updateMenuUrl + this.form.id,
+			  url: ApiList.updateMenuUrl + this.$route.params.id,
 			  method: 'put',
 			  data: this.form
 			}).then(response => {
@@ -199,7 +202,7 @@
 	  },
 
 	  backMenuList() {
-		this.$router.push('/menucategory/user')
+		this.$router.push('/menu/user')
 	  },
     }
   }

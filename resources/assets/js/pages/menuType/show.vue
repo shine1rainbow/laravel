@@ -15,7 +15,10 @@
 
 		  <el-form-item label="开放时间" prop="working_date">
 			<el-checkbox-group v-model="workingDate" @change="handleCheckedWorkingDateChange">
-				<el-checkbox v-for="city in cities" :label="city.id" :key="city.id">{{city.name}}</el-checkbox>
+				<el-checkbox v-for="workDate in workDates"
+                    :label="workDate.id"
+                    :key="workDate.id"
+                >{{workDate.name}}</el-checkbox>
 			</el-checkbox-group>
 		  </el-form-item>
 
@@ -66,8 +69,8 @@
 		  </el-form-item>
 
 		  <el-form-item>
-			<el-button type="primary" @click="submitForm('form')">立即创建</el-button>
-			<el-button @click="backMenuTypeList">取消</el-button>
+              <el-button type="primary" @click="submitForm('form')">更新</el-button>
+			  <el-button @click="backMenuTypeList">取消</el-button>
 		  </el-form-item>
 		</el-form>
 	</div>
@@ -83,7 +86,7 @@
       return {
         shops: [],
 		workingDate: [],
-		cities: [
+		workDates: [
 			{id: 1, name: '周一'},
 			{id: 2, name: '周二'},
 			{id: 3, name: '周三'},
@@ -133,8 +136,8 @@
 		},
 
 		formatServingTime: function () {
-			return parseTime(this.opening_time[0], "{h}:{i}:{s}") + "," + 
-				parseTime(this.opening_time[1], "{h}:{i}:{s}")
+			return parseTime(this.serving_time[0], "{h}:{i}:{s}") + "," + 
+				parseTime(this.serving_time[1], "{h}:{i}:{s}")
 		}
 	},
 
@@ -149,11 +152,15 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
 			http({                                     
-			  url: ApiList.storeMenuTypeUrl,         
-			  method: 'post',                        
+			  url: ApiList.updateMenuTypeUrl + this.$route.params.id,         
+			  method: 'put',                        
 			  data: this.form                        
 			}).then(response => {                      
 			  if (response.data.code == 200) {       
+                  this.$notify({
+                      type: 'success',
+                      message: this.$i18n.t("common.updateSuccess")
+                  });
 				  this.$router.push('/menutype/user')
 			  }                                      
 			}, response => {                           
@@ -167,10 +174,22 @@
 
 	  fetchUserMenuType() {
 		http({
-			url: ApiList.getUserMenuTypeUrl,
+			url: ApiList.getMenuTypeDetailUrl + this.$route.params.id,
 			method: 'get',
 		}).then(response => {
-            this.shops = response.data.data
+            this.form = response.data.data
+            this.form.is_hot = response.data.data.is_hot.toString()
+            this.form.is_recommend = response.data.data.is_recommend.toString()
+            this.opening_time = response.data.data.opening_time.split(',')
+            this.opening_time[0] = "2018-09-18 " + this.opening_time[0]
+            this.opening_time[1] = "2018-09-18 " + this.opening_time[1]
+            this.serving_time = response.data.data.serving_time.split(',')
+            this.serving_time[0] = "2018-09-18 " + this.serving_time[0]
+            this.serving_time[1] = "2018-09-18 " + this.serving_time[1]
+            let workingDateArr = response.data.data.working_date.split(',')
+            this.workingDate = workingDateArr.map(function (data) {
+                return +data
+            })
 		}, response => {
 			console.log("fetch data error")
 		})
@@ -193,6 +212,7 @@
 
 	  pickServingTime() {
 		this.form.serving_time = this.formatServingTime
+        console.log(this.form.serving_time)
 	  },
 
 	  backMenuTypeList() {

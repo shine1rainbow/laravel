@@ -8,6 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use InfoTrait;
+    
+    /**
+     * Json2Array
+     *
+     * @param string $value
+     * @return mixed
+     */
+    public function getImagesAttribute($value)
+    {
+        return explode(",", $value);
+    }
+
+    /**
+     * Array2json
+     *
+     * @param array $value
+     */
+    public function setImagesAttribute(array $value)
+    {
+        $this->attributes['images'] = implode(",", $value);
+    }
 
     /**
      * Json2Array

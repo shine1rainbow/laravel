@@ -112,7 +112,7 @@
 
       //编辑操作
       handleEdit(index, row) {
-        this.$router.push('/menutype/show/' + row.id)
+        this.$router.push('/menucategory/show/' + row.id)
       },
 
       //删除操作
@@ -134,6 +134,7 @@
 						type: 'success',
 						message: this.$i18n.t("common.deleteSuccess")
 					});
+                    this.fetchTableData()
 				}
 			}, response => {
 				console.log("fetch data error")

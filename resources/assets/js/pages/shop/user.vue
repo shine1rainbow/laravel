@@ -157,7 +157,6 @@
 						type: 'success',
 						message: this.$i18n.t("common.deleteSuccess")
 					});
-
 	                this.fetchTableData()
 				}
 			}, response => {

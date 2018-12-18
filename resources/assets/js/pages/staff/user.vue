@@ -117,7 +117,7 @@
 
       //编辑操作
       handleEdit(index, row) {
-        this.$router.push('/menu/show/' + row.id)
+        this.$router.push('/staff/show/' + row.id)
       },
 
       //删除操作
@@ -131,7 +131,7 @@
 
 			//删除店铺
 			http({
-				url: ApiList.deleteMenuUrl + row.id,
+				url: ApiList.deleteStaffUrl + row.id,
 				method: 'delete',
 			}).then(response => {
 				if (response.data.code == '200') {
@@ -139,6 +139,7 @@
 						type: 'success',
 						message: this.$i18n.t("common.deleteSuccess")
 					});
+                    this.fetchTableData()
 				}
 			}, response => {
 				console.log("fetch data error")

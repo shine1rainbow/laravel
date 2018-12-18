@@ -69,9 +69,9 @@ class MenutypeController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(int $id, MenuTypeRequests\UpdateRequest $request)
     {
-        $params = request()->all();
+        $params = $request->all();
         $params['id'] = $id;
         $response = $this->dispatch(new MenuTypeJobs\UpdateJob($params));
         return $response;
