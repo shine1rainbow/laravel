@@ -34,7 +34,7 @@ class CreateShopsTable extends Migration
             $table->string('activity')->nullable()->comment('优惠活动');
             $table->integer('shop_status_id')->unsigned()->default(1)->comment('门店状态');
             $table->string('shop_qr')->nullable()->comment('店铺总二维码');
-            $table->json('business_hour')->comment('工作时间(7天): 09:00-21:00,09:00-20:30,...,歇业');
+            $table->json('business_hour')->nullable()->comment('工作时间(7天): 09:00-21:00,09:00-20:30,...,歇业');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

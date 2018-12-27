@@ -40,7 +40,7 @@ class StoreRequest extends FormRequest
             'introduction' => 'string',
             'remind' => 'string',
             'activity' => 'string',
-            'business_hour' => 'string',
+            'business_hour' => 'array',
         ];
     }
 }

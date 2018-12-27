@@ -9,6 +9,8 @@ class MenuAddition extends Model
 {
     use InfoTrait;
 
+    protected $guarded = ['id', 'created_at'];
+
     // 菜(一对多)配菜(反向关联)
     public function menu()
     {

@@ -9,6 +9,8 @@ class Shop extends Model
 {
     use InfoTrait;
     
+    protected $guarded = ['id', 'created_at'];
+
     /**
      * Json2Array
      *
@@ -17,7 +19,7 @@ class Shop extends Model
      */
     public function getImagesAttribute($value)
     {
-        return explode(",", $value);
+        return array_filter(explode(",", $value));
     }
 
     /**
@@ -46,7 +48,7 @@ class Shop extends Model
      *
      * @param array $value
      */
-    public function setBusinessHourAttribute(array $value)
+    public function setBusinessHourAttribute($value)
     {
         $this->attributes['business_hour'] = json_encode($value);
     }

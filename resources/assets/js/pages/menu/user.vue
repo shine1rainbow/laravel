@@ -37,11 +37,6 @@
         </el-table-column>
 
         <el-table-column
-          label="avater"
-          prop="avater">
-        </el-table-column>
-
-        <el-table-column
           label="spicy"
           prop="spicy">
         </el-table-column>

@@ -9,6 +9,8 @@ class Staff extends Model
 {
     use InfoTrait;
 
+    protected $guarded = ['id', 'created_at'];
+
     protected $table = 'staffs';
 
     // 店铺(一对多)员工(反向关联)

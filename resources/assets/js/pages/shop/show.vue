@@ -12,14 +12,6 @@
 						<el-input v-model="form.restaurant_name"></el-input>
 					  </el-form-item>
 
-					  <el-form-item label="商家Logo">
-                          <img :src="form.restaurant_background" id="restaurant_background_img">
-					  </el-form-item>
-
-					  <el-form-item label="App商家Logo">
-                          <img :src="form.restaurant_logo" id="restaurant_logo_img">
-					  </el-form-item>
-
 					  <el-form-item label="食物类别">
 						<el-input v-model="form.food_type"></el-input>
 					  </el-form-item>
@@ -52,6 +44,14 @@
 						<el-input v-model="form.payment_sequence"></el-input>
 					  </el-form-item>
 
+					  <el-form-item label="商家Logo">
+                          <img :src="form.restaurant_background" id="restaurant_background_img">
+					  </el-form-item>
+
+					  <el-form-item label="App商家Logo">
+                          <img :src="form.restaurant_logo" id="restaurant_logo_img">
+					  </el-form-item>
+
 					  <el-form-item label="详细照片">
                         <el-row>
                           <el-col :span="8" v-for="(image,index) in form.images" :key="index" :offset="index > 0 ? 2 : 0">
@@ -60,17 +60,6 @@
                             </el-card>
                           </el-col>
                         </el-row>
-					  </el-form-item>
-
-					  <el-form-item>
-						  <el-time-picker
-							is-range
-							v-model="value4"
-							range-separator="至"
-							start-placeholder="开始时间"
-							end-placeholder="结束时间"
-							placeholder="选择时间范围">
-						  </el-time-picker>
 					  </el-form-item>
 
 					  <el-form-item>
@@ -102,10 +91,9 @@
           landline: '',
           address: '',
           postcode: '',
-          images: [] 
+          images: [],
+          business_hour: []
         },
-
-        value4: [],
       }
     },
 

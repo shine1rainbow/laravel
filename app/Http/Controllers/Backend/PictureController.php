@@ -15,9 +15,23 @@ class PictureController extends Controller
      */
     public function getUploadPath()
     {
-        $filePath = request()->file->store('shops', 'public');
-        $fileFullPath = url('storage') . '/' . $filePath;
-        return $fileFullPath;
+        $filePath = request()->file->store('pictures', 'public');
+
+        if (!empty($filePath)) {
+            $response = [
+                'code' => trans('pheicloud.response.success.code'),
+                'msg' => trans('pheicloud.response.success.msg'),
+                'data' => $filePath,
+            ];
+        } else {
+            $response = [
+                'code' => trans('pheicloud.response.empty.code'),
+                'msg' => trans('pheicloud.response.empty.msg'),
+                'data' => '',
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**
@@ -49,16 +63,10 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        //$filePath = request()->file->store('images', 'public');
-        //$fileFullPath = url('storage') . '/' . $filePath;
-        //$params['url'] = $fileFullPath;
-        $params['url'] = request()->input('url');
-        $params['tag_id'] = request()->input('tag_id');
-        $params['order'] = is_null(request()->input('order')) ?? 1;
-        $params['desc'] = is_null(request()->input('desc')) ?? '';
+        $params = request()->all();
         $params['user_id'] = request()->user()->id ?? 0;
         $response = $this->dispatch(new PictureJobs\StoreJob($params));
-        return response()->json($response);
+        return $response;
     }
 
     /**
@@ -93,15 +101,8 @@ class PictureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$filePath = request()->file->store('images', 'public');
-        //$fileFullPath = url('storage') . '/' . $filePath;
-        //$params['url'] = $fileFullPath;
+        $params = request()->all();
         $params['id'] = $id;
-        $params['url'] = request()->input('url');
-        $params['tag_id'] = request()->input('tag_id');
-        $params['order'] = is_null(request()->input('order')) ?? 1;
-        $params['desc'] = is_null(request()->input('desc')) ?? '';
-        $params['user_id'] = request()->user()->id ?? 0;
         $response = $this->dispatch(new PictureJobs\UpdateJob($params));
         return $response;
     }

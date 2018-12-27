@@ -9,6 +9,29 @@ class Menu extends Model
 {
     use InfoTrait;
 
+    protected $guarded = ['id', 'created_at'];
+
+    /**
+     * Json2Array
+     *
+     * @param string $value
+     * @return mixed
+     */
+    public function getDetailImgAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    /**
+     * Array2json
+     *
+     * @param array $value
+     */
+    public function setDetailImgAttribute($value)
+    {
+        $this->attributes['detail_img'] = json_encode($value);
+    }
+
     // 菜单分类(一对多)菜(反向关联)
     public function MenuCategory()
     {

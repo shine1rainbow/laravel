@@ -1,5 +1,6 @@
 <template>
-	<div>
+    <div class="box box-warning shopOpeningTime">
+        <div class="box-body" style="margin: 0 auto">
 		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form">
 
 		  <el-form-item label="图片" prop="url">
@@ -11,13 +12,11 @@
 		  </el-form-item>
 
 		  <el-form-item label="排序" prop="order">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.order"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.order"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="标签" prop="tag_id">
-			<el-select v-model="form.tag_id" placeholder="选择标签">
+			<el-select v-model="form.tag_id" placeholder="选择标签" style="width: 100%">
 			  <el-option v-for="tag in tags" :label="tag.name" :value="tag.id" :key="tag.id"></el-option>
 			</el-select>
 		  </el-form-item>
@@ -28,11 +27,11 @@
 		  </el-form-item>
 		</el-form>
 	</div>
+    </div>
 </template>
 
 <script>
   import { http } from './../../utils/fetch'
-  import { parseTime } from './../../utils/util'
   import ApiList from './../../config'
 
   export default {
@@ -43,8 +42,8 @@
           user_id: '',
           tag_id: '',
           desc: '',
-          order: 1,
-          url: 0
+          order: '',
+          url: '' 
         },
         rules: {
           url: [
@@ -129,7 +128,8 @@
   .el-switch, .el-checkbox-group {
 	margin: 10px;
   }
-  .demo-roleForm {
-	width: 500px;
+  .demo-form {
+	width: 600px;
+    margin: 30px auto;
   }
 </style>

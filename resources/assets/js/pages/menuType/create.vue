@@ -1,10 +1,9 @@
 <template>
-	<div >
+    <div class="box box-warning shopOpeningTime">
+        <div class="box-body" style="margin: 0 auto">
 		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form">
 		  <el-form-item label="菜单名称" prop="name">
-			<el-col :span="6">
-				<el-input v-model="form.name"></el-input>
-			</el-col>
+            <el-input v-model="form.name"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="店铺" prop="shop_id">
@@ -71,6 +70,7 @@
 		  </el-form-item>
 		</el-form>
 	</div>
+    </div>
 </template>
 
 <script>
@@ -205,7 +205,8 @@
   .el-switch, .el-checkbox-group {
 	margin: 10px;
   }
-  .demo-roleForm {
-	width: 500px;
+  .demo-form {
+	width: 750px;
+    margin: 30px auto;
   }
 </style>

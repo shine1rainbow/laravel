@@ -1,19 +1,34 @@
 <template>
 	<div>
-		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form">
-		  <el-form-item label="菜单名称" prop="menu_name">
-			<el-col :span="6">
+		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form" style="width: 500px">
+		  <el-form-item label="菜单名称" prop="menu_name" style="width:100%">
 				<el-input v-model="form.menu_name"></el-input>
-			</el-col>
 		  </el-form-item>
 
 		  <el-form-item label="二级菜单" prop="menu_category_id">
-			<el-select v-model="form.menu_category_id" placeholder="选择二级菜单">
+			<el-select v-model="form.menu_category_id" placeholder="选择二级菜单" style="width:100%">
 			  <el-option v-for="menuCategory in menuCategories" :label="menuCategory.name" :value="menuCategory.id" :key="menuCategory.id"></el-option>
 			</el-select>
 		  </el-form-item>
 
-		  <el-form-item label="菜单号" prop="menu_no">
+		  <el-form-item label="菜单封面图" prop="avater">
+              <el-select v-model="form.avater" value-key="form.avater" clearable style="width: 100%">
+                <template slot="prefix"><img class="prefix" :src="form.avater" /></template>
+                <el-option v-for="item in userImages" :key="item.id" :label="item.desc" :value="item.url">
+                    <img :src="item.url"> {{ item.desc }}
+                </el-option>
+              </el-select>
+          </el-form-item>
+
+		  <el-form-item label="菜单详细图" prop="detail_img">
+              <el-select v-model="form.detail_img" multiple value-key="form.detail_img" placeholder="Select" style="width: 100%">
+                <el-option v-for="item in userImages" :key="item.id" :label="item.desc" :value="item.url" class="select-option">
+                    <img :src="item.url" class="detail_img"> {{ item.desc }}
+                </el-option>
+              </el-select>
+          </el-form-item>
+
+		  <el-form-item label="菜单号" prop="menu_no" style="width:100%">
             <el-input v-model="form.menu_no"></el-input>
 		  </el-form-item>
 
@@ -22,22 +37,20 @@
 		  </el-form-item>
 
 		  <el-form-item label="数量" prop="number">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.number"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.number"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="辣度" prop="spicy">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.spicy"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.spicy"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="排序" prop="order">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.order"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.order"></el-input>
 		  </el-form-item>
+
+          <el-form-item label="介绍" prop="introduction">
+            <el-input type="textarea" v-model="form.introduction" style="width:100%"></el-input>
+          </el-form-item>
 
 		  <el-form-item label="是否有货" required>
 			<el-switch
@@ -70,10 +83,6 @@
 			</el-switch>
 		  </el-form-item>
 
-          <el-form-item label="介绍" prop="introduction">
-            <el-input type="textarea" v-model="form.introduction"></el-input>
-          </el-form-item>
-
 		  <el-form-item>
               <el-button type="success" @click="submitForm('form')" size="small">保存</el-button>
               <el-button @click="backMenuList" size="small">取消</el-button>
@@ -90,11 +99,13 @@
   export default {
     data() {
       return {
+        userImages: [],
         menuCategories: [],
         form: {
           menu_name: '',
           menu_no: '',
           menu_category_id: '',
+          avater: "",
           order: 1,
           spicy: 0,
           price: 0.00,
@@ -144,9 +155,21 @@
 
     created() {
         this.fetchUserMenuCategory()
+        this.fetchImages()
     },
 
     methods: {
+
+      fetchImages () {
+		http({
+			url: ApiList.getUserPictureUrl,
+			method: 'get',
+		}).then(response => {
+            this.userImages = response.data.data
+		}, response => {
+			console.log("fetch data error")
+		})
+      },
 
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -197,4 +220,19 @@
   .demo-roleForm {
 	width: 500px;
   }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  .prefix {
+    margin-top: 10px;
+  }
+  .detail_img {
+    width: 50px;
+    height: 50px;
+  }
+  .select-option {
+      margin-top: 8px;
+  }
+
 </style>

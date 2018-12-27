@@ -4,6 +4,7 @@ namespace App\Jobs\Backend\Picture;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Storage;
 use App\Tables\Picture;
 use stdClass;
 

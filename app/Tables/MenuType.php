@@ -9,6 +9,8 @@ class MenuType extends Model
 {
     use InfoTrait;
 
+    protected $guarded = ['id', 'created_at'];
+
     // 店铺(一对多)菜单(反向关联)
     public function shop()
     {

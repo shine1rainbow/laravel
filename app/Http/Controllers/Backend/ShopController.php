@@ -89,7 +89,6 @@ class ShopController extends Controller
     {
         $params = $request->all();
         $params['id'] = $id;
-        $params['images'] = implode(',', $params['images']);
         $response = $this->dispatch(new ShopJobs\UpdateJob($params));
         return $response;
     }

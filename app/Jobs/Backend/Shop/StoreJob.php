@@ -32,6 +32,7 @@ class StoreJob
      */
     public function handle()
     {
+        $this->params['business_hour'] = json_encode($this->params['business_hour']);
         $shopId = TableModels\Shop::insertGetId($this->params);
 
         if ($shopId) {

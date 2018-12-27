@@ -30,6 +30,8 @@ class StoreRequest extends FormRequest
             'spicy' => 'required|integer',
             'status' => 'required|string',
             'price' => 'required|string',
+            'avater' => 'required|string',
+            'detail_img' => 'array',
             'menu_category_id' => 'required|integer',
             'is_recommend' => 'required|string',
             'is_hot' => 'required|string',

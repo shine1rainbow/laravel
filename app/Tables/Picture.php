@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
+    protected $guarded = ['id', 'created_at'];
+
     // 照片(一对多)标签(反向关联)
     public function tag()
     {
@@ -16,5 +18,10 @@ class Picture extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getUrlAttribute($value)
+    {
+        return url('storage') . '/' . $value;
     }
 }

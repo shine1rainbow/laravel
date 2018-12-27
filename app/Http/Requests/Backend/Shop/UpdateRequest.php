@@ -41,7 +41,7 @@ class UpdateRequest extends FormRequest
             'introduction' => 'string',
             'remind' => 'string',
             'activity' => 'string',
-            'business_hour' => 'string|nullable',
+            'business_hour' => 'array',
         ];
     }
 }

@@ -39,7 +39,9 @@ class UploadImageJob
     {
         if ($this->type == 'images') {
             $shop = Shop::find($this->id);
-            $this->path = $shop['images'] . ',' . $this->path;
+            if (!is_null($shop['images'])) {
+                $this->path = implode(',', $shop['images']) . ',' . $this->path;
+            }
         }
 
         $shops = Shop::where('id', '=', $this->id)

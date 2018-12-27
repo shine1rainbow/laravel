@@ -9,6 +9,8 @@ class ShopQr extends Model
 {
     use InfoTrait;
 
+    protected $guarded = ['id', 'created_at'];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

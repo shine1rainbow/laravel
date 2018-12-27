@@ -32,7 +32,7 @@ class StoreJob
      */
     public function handle()
     {
-        $menu = TableModels\Menu::insert($this->params);
+        $menu = TableModels\Menu::create($this->params);
 
         if ($menu) {
             $code = trans('pheicloud.response.success.code');

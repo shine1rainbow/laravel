@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    protected $guarded = ['id', 'created_at'];
+
     // 照片(一对多)标签
     public function pictures()
     {

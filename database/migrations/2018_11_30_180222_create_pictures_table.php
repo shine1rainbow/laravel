@@ -17,8 +17,8 @@ class CreatePicturesTable extends Migration
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url')->default('')->comment('图片路径');
-            $table->integer('user_id')->unsigned()->comment('用户ID');
-            $table->integer('tag_id')->unsigned()->default(1)->comment('标签ID');
+            $table->integer('user_id')->nullable()->unsigned()->comment('用户ID');
+            $table->integer('tag_id')->nullable()->unsigned()->default(1)->comment('标签ID');
             $table->integer('order')->default(1)->comment('图片权重');
             $table->string('desc')->nullable()->comment('图片描述');
             $table->softDeletes();
