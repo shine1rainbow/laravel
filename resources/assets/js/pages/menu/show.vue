@@ -1,14 +1,13 @@
 <template>
-	<div>
+    <div class="box box-warning shopOpeningTime">
+        <div class="box-body" style="margin: 0 auto">
 		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form">
 		  <el-form-item label="菜单名称" prop="menu_name">
-			<el-col :span="6">
-				<el-input v-model="form.menu_name"></el-input>
-			</el-col>
+            <el-input v-model="form.menu_name"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="二级菜单" prop="menu_category_id">
-			<el-select v-model="form.menu_category_id" placeholder="选择二级菜单">
+			<el-select v-model="form.menu_category_id" placeholder="选择二级菜单" style="width: 100%">
 			  <el-option v-for="menuCategory in menuCategories" :label="menuCategory.name" :value="menuCategory.id" :key="menuCategory.id"></el-option>
 			</el-select>
 		  </el-form-item>
@@ -22,22 +21,30 @@
 		  </el-form-item>
 
 		  <el-form-item label="数量" prop="number">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.number"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.number"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="辣度" prop="spicy">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.spicy"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.spicy"></el-input>
 		  </el-form-item>
 
 		  <el-form-item label="排序" prop="order">
-			<el-col :span="6">
-				<el-input type="number" v-model="form.order"></el-input>
-			</el-col>
+            <el-input type="number" v-model="form.order"></el-input>
 		  </el-form-item>
+
+		  <el-form-item label="菜单封面图" prop="avater">
+            <img class="prefix" :src="form.avater" />
+          </el-form-item>
+
+		  <el-form-item label="菜单详细图" prop="detail_img">
+            <el-row>
+              <el-col :span="8" v-for="(image,index) in form.detail_img" :key="index" :offset="index > 0 ? 2 : 0">
+                <el-card :body-style="{ padding: '0px' }">
+                  <img :src="image" class="detail_img">
+                </el-card>
+              </el-col>
+            </el-row>
+          </el-form-item>
 
 		  <el-form-item label="是否有货" required>
 			<el-switch
@@ -79,6 +86,7 @@
               <el-button @click="backMenuList" size="small">取消</el-button>
 		  </el-form-item>
 		</el-form>
+	</div>
 	</div>
 </template>
 
@@ -212,7 +220,17 @@
   .el-switch, .el-checkbox-group {
 	margin: 10px;
   }
-  .demo-roleForm {
-	width: 500px;
+  .demo-form {
+	width: 600px;
+    margin: 30px auto;
+  }
+  .detail_img {
+    width: 200px;
+    height: 200px;
+  }
+  .prefix {
+    margin-top: 10px;
+    width: 200px;
+    height: 200px;
   }
 </style>

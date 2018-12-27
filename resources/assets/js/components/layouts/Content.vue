@@ -22,9 +22,12 @@
                 enter-active-class="animated fadeInLeft"
                 leave-active-class="animated fadeOutRight"
             >
+                <router-view></router-view>
+            <!--
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
+            -->
             </transition>
         </section>
         <!-- /.content -->

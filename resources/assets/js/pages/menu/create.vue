@@ -1,5 +1,6 @@
 <template>
-	<div>
+    <div class="box box-warning shopOpeningTime">
+        <div class="box-body" style="margin: 0 auto">
 		<el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-form" style="width: 500px">
 		  <el-form-item label="菜单名称" prop="menu_name" style="width:100%">
 				<el-input v-model="form.menu_name"></el-input>
@@ -88,6 +89,7 @@
               <el-button @click="backMenuList" size="small">取消</el-button>
 		  </el-form-item>
 		</el-form>
+	</div>
 	</div>
 </template>
 
@@ -234,5 +236,12 @@
   .select-option {
       margin-top: 8px;
   }
-
+  .demo-form {
+	width: 600px;
+    margin: 30px auto;
+  }
+  #avater_img {
+    width: 200px;
+    height: 200px;
+  }
 </style>
