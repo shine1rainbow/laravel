@@ -5,6 +5,7 @@
 		<div class="box-header with-border">
 			<el-button
 				type="primary"
+				size="small"
 				icon="el-icon-edit"
 				@click="dialogAddFormVisible = true"
 			>添加标签</el-button>

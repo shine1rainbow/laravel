@@ -78,15 +78,17 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
         //一级菜单管理
 		Route::group(['prefix' => 'menutype'], function () {
 			Route::get('user', 'MenuTypeController@user');
+			Route::get('menucategories/{id}', 'MenuTypeController@menuCategories');
 			Route::get('{id}', 'MenuTypeController@show');
 			Route::put('{id}', 'MenuTypeController@update');
 			Route::delete('{id}', 'MenuTypeController@destroy');
 			Route::post('/', 'MenuTypeController@store');
 		});
 
-		//管理
+		//二级菜单管理
 		Route::group(['prefix' => 'menucategory'], function () {
 			Route::post('/', 'MenuCategoryController@store');
+			Route::get('menus/{id}', 'MenuCategoryController@menus');
 			Route::get('{id}', 'MenuCategoryController@show');
 			Route::get('user', 'MenuCategoryController@user');
 			Route::put('{id}', 'MenuCategoryController@update');
@@ -96,6 +98,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 		//菜单管理
 		Route::group(['prefix' => 'menu'], function () {
 			Route::post('/', 'MenuController@store');
+			Route::get('menuadditions/{id}', 'MenuController@menuAdditions');
+			Route::get('menuoptions/{id}', 'MenuController@menuOptions');
 			Route::get('{id}', 'MenuController@show');
 			Route::get('user', 'MenuController@user');
 			Route::put('{id}', 'MenuController@update');

@@ -88,4 +88,16 @@ class MenuCategoryController extends Controller
         $response = $this->dispatch(new MenuCategoryJobs\DestroyJob($id));
         return $response;
     }
+
+    /**
+     * show menucategory menus lists.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menus($id)
+    {
+        $response = $this->dispatch(new MenuCategoryJobs\MenuJob($id));
+        return $response;
+    }
 }

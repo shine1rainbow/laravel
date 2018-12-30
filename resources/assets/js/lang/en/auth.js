@@ -1,9 +1,9 @@
 export default {
-    'loginTitle': 'Mastiff',
+    'loginTitle': 'watierx',
     'loginUsername': 'username',
     'loginPassword': 'password',
     'loginForgetPasswd': 'forget password ?',
     'loginSubmit': 'login',
-    'loginCompanyName': 'Mastiff ',
+    'loginCompanyName': 'Waiterx ',
     'loginCompanyLink': '#',
 }

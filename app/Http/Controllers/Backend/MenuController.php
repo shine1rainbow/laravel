@@ -92,4 +92,28 @@ class MenuController extends Controller
         $response = $this->dispatch(new MenuJobs\DestroyJob($id));
         return $response;
     }
+
+    /**
+     * show menu menuoptions lists.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menuOptions($id)
+    {
+        $response = $this->dispatch(new MenuJobs\MenuOptionJob($id));
+        return $response;
+    }
+
+    /**
+     * show menu menuoptions lists.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menuAdditions($id)
+    {
+        $response = $this->dispatch(new MenuJobs\MenuAdditionJob($id));
+        return $response;
+    }
 }

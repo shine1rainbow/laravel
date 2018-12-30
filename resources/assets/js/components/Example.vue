@@ -22,6 +22,7 @@
 
 <script>
     import {http} from './../utils/fetch'
+    import ApiList from './../config'
     import Vue from 'vue';
 
     export default {
@@ -44,11 +45,19 @@
         methods: {
             fetch() {
                 //demo of http request
+                http({url: ApiList.getMenuOptionsByMenu + '1', method: 'get'}).then(response => {
+                    console.log(response.data);
+                }).catch(err => {
+                    console.log(err)
+                })
+                /*
+                //demo of http request
                 http({url: '/test', method: 'get'}).then(response => {
                     console.log(response.data);
                 }).catch(err => {
                     console.log(err)
                 })
+                */
             },
 
             updateLanguage(language) {

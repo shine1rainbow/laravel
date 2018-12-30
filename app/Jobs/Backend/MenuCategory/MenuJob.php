@@ -1,40 +1,38 @@
 <?php
 
-namespace App\Jobs\Backend\User;
+namespace App\Jobs\Backend\MenuCategory;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Tables as TablesModels;
 
-class GetPictureByUserJob
+class MenuJob
 {
     use Dispatchable, Queueable;
 
     /**
-     * 认证用户
+     * menutype
      */
-    private $user;
+    private $id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(TablesModels\User $user)
+    public function __construct($id)
     {
-        $this->user = $user;
+        $this->id = $id;
     }
 
     /**
      * Execute the job.
-     *
+     
      * @return void
      */
     public function handle()
     {
-        $userId = $this->user->id;
-
-        if (is_null($userId)) {
+        if (is_null($this->id)) {
 
             $response = [
                 'code' => trans('pheicloud.response.empty.code'),
@@ -44,16 +42,12 @@ class GetPictureByUserJob
             return response()->json($response);
         }
 
-        $pictures = TablesModels\Picture::join('tags', 'pictures.tag_id', '=', 'tags.id')
-            ->select("pictures.*", "tags.name as tag_name")
-            ->where('pictures.user_id', $userId)
-            ->orderBy('order', 'desc')
-            ->get();
+        $menus = TablesModels\Menu::where('menu_category_id', $this->id)->get()->toArray();
 
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $pictures
+            'data' => $menus
         ];
 
         return response()->json($response);

@@ -11,7 +11,9 @@ const ApiList = {
     'getUserInfoUrl': 'api/v1/backend/user/info',
     'getUserPermissionUrl': 'api/v1/backend/user/permission',
     'getUserShopUrl': 'api/v1/backend/user/shop',
+    'getUserTagUrl': 'api/v1/backend/user/tag',
     'getUserStaffUrl': 'api/v1/backend/user/staff',
+    'getUserPictureUrl': 'api/v1/backend/user/picture',
     'getUserMenuTypeUrl': 'api/v1/backend/user/menutype',
     'getUserMenuCategoryUrl': 'api/v1/backend/user/menucategory',
     'getUserMenuUrl': 'api/v1/backend/user/menu',
@@ -32,20 +34,24 @@ const ApiList = {
     'getMenuCategoryListByUserUrl': 'api/v1/backend/user/menucategory',
     'getMenuListByUserUrl': 'api/v1/backend/user/menu',
 
-    'getMenuDetailUrl': 'api/v1/backend/menu/',
     'updateMenuUrl': 'api/v1/backend/menu/',
     'deleteMenuUrl': 'api/v1/backend/menu/',
     'storeMenuUrl': 'api/v1/backend/menu',
+    'getMenuDetailUrl': 'api/v1/backend/menu/',
+    'getMenuAdditionsByMenu': 'api/v1/backend/menu/menuadditions/',
+    'getMenuOptionsByMenu': 'api/v1/backend/menu/menuoptions/',
 
-    'getMenuCategoryDetailUrl': 'api/v1/backend/menucategory/',
     'updateMenuCategoryUrl': 'api/v1/backend/menucategory/',
     'deleteMenuCategoryUrl': 'api/v1/backend/menucategory/',
     'storeMenuCategoryUrl': 'api/v1/backend/menucategory',
+    'getMenuCategoryDetailUrl': 'api/v1/backend/menucategory/',
+    'getMenusByMenuCategory': 'api/v1/backend/menucategory/menus/',
 
-    'getMenuTypeDetailUrl': 'api/v1/backend/menutype/',
     'updateMenuTypeUrl': 'api/v1/backend/menutype/',
     'deleteMenuTypeUrl': 'api/v1/backend/menutype/',
     'storeMenuTypeUrl': 'api/v1/backend/menutype',
+    'getMenuTypeDetailUrl': 'api/v1/backend/menutype/',
+    'getMenuCategoriesByMenuType': 'api/v1/backend/menutype/menucategories/',
 
     'getMenuAdditionDetailUrl': 'api/v1/backend/menuaddition/',
     'updateMenuAdditionUrl': 'api/v1/backend/menuaddition/',
@@ -68,8 +74,12 @@ const ApiList = {
     'deleteTagUrl': 'api/v1/backend/tag/',
     'getTagListByUserUrl': 'api/v1/backend/tag/user',
 
-    'uploadPictureUrl': 'api/v1/backend/picture/uploadImg',
     'getFilePathUrl': 'api/v1/backend/picture/getUploadPath',
+    'getPictureListUrl': 'api/v1/backend/picture',
+    'getPictureDetailUrl': 'api/v1/backend/picture/',
+    'storePictureUrl': 'api/v1/backend/picture',
+    'updatePictureUrl': 'api/v1/backend/picture/',
+    'deletePictureUrl': 'api/v1/backend/picture/',
 }
 
 export default ApiList
