@@ -28,7 +28,7 @@ class IndexJob
     public function handle()
     {
         $menuTypes = MenuType::join('shops', 'menu_types.shop_id', '=', 'shops.id')
-            ->select('menu_types.*', 'shops.name as shop_name')
+            ->select('menu_types.*', 'shops.restaurant_name as shop_name')
             ->get();
 
         if (is_null($menuTypes)) {

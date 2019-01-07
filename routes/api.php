@@ -45,6 +45,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
             Route::get('{id}', 'MenuCategoryController@show');
         });
 
+		//菜单管理
+		Route::group(['prefix' => 'menu'], function () {
+			Route::get('/', 'MenuController@index');
+			Route::get('{id}', 'MenuController@show');
+			Route::get('menuadditions/{id}', 'MenuController@menuAdditions');
+			Route::get('menuoptions/{id}', 'MenuController@menuOptions');
+		});
+
         //附加菜管理
         Route::group(['prefix' => 'menuaddition'], function () {
             Route::get('/', 'MenuAdditionController@index');
