@@ -45,7 +45,7 @@
         methods: {
             fetch() {
                 //demo of http request
-                http({url: ApiList.getMenuOptionsByMenu + '1', method: 'get'}).then(response => {
+                http({url: ApiList.getMenuCategoriesByMenuType + '1', method: 'get'}).then(response => {
                     console.log(response.data);
                 }).catch(err => {
                     console.log(err)

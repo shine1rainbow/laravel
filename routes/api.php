@@ -21,6 +21,42 @@
 Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 
 	Route::group(['namespace' => 'Api\V1'], function () {
+
+        //店铺管理
+        Route::group(['prefix' => 'shop'], function () {
+            Route::get('/', 'ShopController@index');
+            Route::get('{id}', 'ShopController@show');
+            Route::get('menutypes/{id}', 'ShopController@menutypes');
+            Route::get('menucategories/{id}', 'ShopController@menucategories');
+            Route::get('menus/{id}', 'ShopController@menus');
+        });
+
+        //一级菜单管理
+        Route::group(['prefix' => 'menutype'], function () {
+            Route::get('/', 'MenuTypeController@index');
+            Route::get('menucategories/{id}', 'MenuTypeController@menuCategories');
+            Route::get('{id}', 'MenuTypeController@show');
+        });
+
+        //二级菜单管理
+        Route::group(['prefix' => 'menucategory'], function () {
+            Route::get('/', 'MenuCategoryController@index');
+            Route::get('menus/{id}', 'MenuCategoryController@menus');
+            Route::get('{id}', 'MenuCategoryController@show');
+        });
+
+        //附加菜管理
+        Route::group(['prefix' => 'menuaddition'], function () {
+            Route::get('/', 'MenuAdditionController@index');
+            Route::get('{id}', 'MenuAdditionController@show');
+        });
+
+        //配菜管理
+        Route::group(['prefix' => 'menuoption'], function () {
+            Route::get('/', 'MenuOptionController@index');
+            Route::get('{id}', 'MenuOptionController@show');
+        });
+
 	});
 
 	Route::group(['prefix' => 'backend', 'namespace' => 'Backend', 'middleware' => 'auth:api'], function () {
