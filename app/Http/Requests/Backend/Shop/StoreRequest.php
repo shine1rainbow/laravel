@@ -31,6 +31,7 @@ class StoreRequest extends FormRequest
             'email' => 'required|email',
             'mobile' => 'string',
             'landline' => 'string',
+            'city_id' => 'string',
             'address' => 'string',
             'postcode' => 'string',
             'service_charge' => 'string',

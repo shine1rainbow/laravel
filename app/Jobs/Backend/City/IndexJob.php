@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Jobs\Api\V1\MenuCategory;
+namespace App\Jobs\Backend\City;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Tables\MenuCategory;
-use stdClass;
+use App\Tables\City;
 
 class IndexJob
 {
@@ -28,9 +27,9 @@ class IndexJob
      */
     public function handle()
     {
-        $menuCategories = MenuCategory::get();
+        $cities = City::get();
 
-        if (is_null($menuCategories)) {
+        if (is_null($cities)) {
 
             $response = [
                 'code' => trans('pheicloud.response.empty.code'),
@@ -45,7 +44,7 @@ class IndexJob
         $response = [
             'code' => trans('pheicloud.response.success.code'),
             'msg' => trans('pheicloud.response.success.msg'),
-            'data' => $menuCategories,
+            'data' => $cities,
         ];
 
         return response()->json($response);

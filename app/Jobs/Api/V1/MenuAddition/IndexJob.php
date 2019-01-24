@@ -5,6 +5,7 @@ namespace App\Jobs\Api\V1\MenuAddition;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Tables\MenuAddition;
+use stdClass;
 
 class IndexJob
 {

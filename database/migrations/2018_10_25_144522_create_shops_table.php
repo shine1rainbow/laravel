@@ -16,10 +16,15 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->default(1)->comment('用户ID');
+            $table->integer('city_id')->unsigned()->nullable()->comment('城市ID');
+            $table->integer('shop_tag_id')->unsigned()->nullable()->comment('店铺分类ID');
             $table->string('restaurant_name')->comment('商家名称');
             $table->string('restaurant_logo')->nullable()->comment('商家Logo');
             $table->string('restaurant_background')->nullable()->comment('App商家背景图片');
             $table->string('food_type')->nullable()->comment('食物类别');
+            $table->double('lat', 8,8)->nullable()->comment('经度');
+            $table->double('lng', 8,8)->nullable()->comment('纬度');
+            $table->double('lng', 8,8)->nullable()->comment('纬度');
             $table->string('email')->nullable()->unique()->comment('邮箱');
             $table->string('mobile')->nullable()->unique()->comment('手机号');
             $table->string('landline')->nullable()->comment('座机号');

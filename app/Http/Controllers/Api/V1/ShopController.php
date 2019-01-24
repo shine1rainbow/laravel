@@ -66,4 +66,11 @@ class ShopController extends Controller
         $response = $this->dispatch(new ShopJobs\MenusJob($id));
         return $response;
     }
+
+    //模糊匹配店铺
+    public function search($keyword)
+    {
+        $response = $this->dispatch(new ShopJobs\SearchJob($keyword));
+        return $response;
+    }
 }

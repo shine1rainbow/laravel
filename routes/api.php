@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
         //店铺管理
         Route::group(['prefix' => 'shop'], function () {
             Route::get('/', 'ShopController@index');
+            Route::get('search/{keyword}', 'ShopController@search');
             Route::get('{id}', 'ShopController@show');
             Route::get('menutypes/{id}', 'ShopController@menutypes');
             Route::get('menucategories/{id}', 'ShopController@menucategories');
@@ -65,6 +66,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
             Route::get('{id}', 'MenuOptionController@show');
         });
 
+        //收藏取消收藏接口
+        Route::group(['prefix' => 'follow'], function () {
+            Route::get('operate', 'FollowController@operate');
+            Route::get('index', 'FollowController@index');
+        });
+
 	});
 
 	Route::group(['prefix' => 'backend', 'namespace' => 'Backend', 'middleware' => 'auth:api'], function () {
@@ -97,6 +104,15 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
 			Route::get('{id}', 'TagController@show');
 			Route::put('{id}', 'TagController@update');
 			Route::delete('{id}', 'TagController@destroy');
+		});
+
+		//城市管理
+		Route::group(['prefix' => 'city'], function () {
+			Route::get('/', 'CityController@index');
+			Route::post('/', 'CityController@store');
+			Route::get('{id}', 'CityController@show');
+			Route::put('{id}', 'CityController@update');
+			Route::delete('{id}', 'CityController@destroy');
 		});
 
 		//店铺管理

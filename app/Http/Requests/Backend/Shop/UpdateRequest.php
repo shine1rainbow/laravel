@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'restaurant_logo' => 'string',
             'restaurant_background' => 'string',
             'food_type' => 'string',
+            'city_id' => 'string',
             'email' => 'email',
             'mobile' => 'string',
             'landline' => 'string',

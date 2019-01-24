@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Tables\Shop;
 use Carbon\Carbon;
+use stdClass;
 
 class IndexJob
 {
