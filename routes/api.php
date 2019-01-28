@@ -72,7 +72,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
             Route::get('index', 'FollowController@index');
         });
 
+        //城市管理
+        Route::group(['prefix' => 'city'], function () {
+            Route::get('/', 'CityController@index');
+        });
 	});
+
 
 	Route::group(['prefix' => 'backend', 'namespace' => 'Backend', 'middleware' => 'auth:api'], function () {
 
