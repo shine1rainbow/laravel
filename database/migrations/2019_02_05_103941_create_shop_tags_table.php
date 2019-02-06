@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitiesTable extends Migration
+class CreateShopTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('shop_tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->comment("城市名称");
-            $table->longText('img')->nullable()->comment("城市封面图");
-            $table->string('lat')->comment("经度");
-            $table->string('lng')->comment("纬度");
-            $table->json('info')->nullable()->comment("其他信息");
+            $table->string('name')->nullable()->comment('类别');
+            $table->string('desc')->nullable()->comment('描述');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
@@ -32,6 +29,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('shop_tags');
     }
 }

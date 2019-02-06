@@ -26,6 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'id' => 'required|integer',
             'name' => 'required|string',
+            'img' => 'string',
             'lat' => 'required|string',
             'lng' => 'required|string',
             'info' => 'array',

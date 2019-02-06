@@ -26,6 +26,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
         Route::group(['prefix' => 'shop'], function () {
             Route::get('/', 'ShopController@index');
             Route::get('search/{keyword}', 'ShopController@search');
+            Route::get('latlng', 'ShopController@latLng');
             Route::get('{id}', 'ShopController@show');
             Route::get('menutypes/{id}', 'ShopController@menutypes');
             Route::get('menucategories/{id}', 'ShopController@menucategories');

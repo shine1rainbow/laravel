@@ -73,4 +73,12 @@ class ShopController extends Controller
         $response = $this->dispatch(new ShopJobs\SearchJob($keyword));
         return $response;
     }
+
+    public function latLng()
+    {
+        $params = request()->all();
+        $fromPos = [$params['lat'], $params['lng']];
+        $response = $this->dispatch(new ShopJobs\LatlngJob($fromPos));
+        return $response;
+    }
 }
