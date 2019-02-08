@@ -81,4 +81,11 @@ class ShopController extends Controller
         $response = $this->dispatch(new ShopJobs\LatlngJob($fromPos));
         return $response;
     }
+
+    //推荐店铺
+    public function recommend()
+    {
+        $response = $this->dispatch(new ShopJobs\RecommendJob());
+        return $response;
+    }
 }

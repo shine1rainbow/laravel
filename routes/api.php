@@ -27,6 +27,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
             Route::get('/', 'ShopController@index');
             Route::get('search/{keyword}', 'ShopController@search');
             Route::get('latlng', 'ShopController@latLng');
+            Route::get('recommend', 'ShopController@recommend');
             Route::get('{id}', 'ShopController@show');
             Route::get('menutypes/{id}', 'ShopController@menutypes');
             Route::get('menucategories/{id}', 'ShopController@menucategories');
@@ -76,6 +77,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'operation.log'], function () {
         //城市管理
         Route::group(['prefix' => 'city'], function () {
             Route::get('/', 'CityController@index');
+        });
+
+        //餐馆标签管理
+        Route::group(['prefix' => 'shoptag'], function () {
+            Route::get('/', 'ShopTagController@index');
+            Route::get('shop/{id}', 'ShopTagController@shops');
         });
 	});
 
