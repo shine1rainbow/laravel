@@ -36,6 +36,24 @@ class OperateJob
     {
         if ($this->type == 'follow') {
 
+            $follow = Follow::where([
+                ['open_id', '=', $this->open_id],
+                ['shop_id', '=', $this->shop_id]
+            ])->first();
+
+            if (!empty($follow)) {
+
+                $response = [
+                    'code' => trans('pheicloud.response.exist.code'),
+                    'msg' => trans('pheicloud.response.exist.msg'),
+                    'data' => new stdClass,
+                ];
+
+                return response()->json($response);
+
+            }
+
+
             //do follow
             $follow = Follow::create([
                 'open_id' => $this->open_id,
@@ -48,20 +66,8 @@ class OperateJob
             $follow = Follow::where([
                 ['open_id', '=', $this->open_id],
                 ['shop_id', '=', $this->shop_id]
-            ])->first();
+            ])->delete();
 
-            if (is_null($follow)) {
-
-                $response = [
-                    'code' => trans('pheicloud.response.empty.code'),
-                    'msg' => trans('pheicloud.response.empty.msg'),
-                    'data' => new stdClass,
-                ];
-
-                return response()->json($response);
-            }
-
-            $follow->delete();
         }
 
         $response = [

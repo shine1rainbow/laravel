@@ -32,6 +32,7 @@ class CreateShopsTable extends Migration
             $table->double('service_charge', 4, 2)->nullable()->comment('服务费');
             $table->string('payment_sequence')->nullable()->comment('支付顺序');
             $table->string('vat_reg_no')->nullable()->comment('税号');
+            $table->string('avg_consumption')->nullable()->comment('平均消费');
             $table->string('images')->nullable()->comment('图片');
             $table->longText('introduction')->nullable()->comment('介绍');
             $table->string('remind')->nullable()->comment('温馨提示');
