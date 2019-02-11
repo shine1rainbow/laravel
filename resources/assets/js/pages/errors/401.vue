@@ -12,9 +12,11 @@
           </li>
         </ul>
       </el-col>
+<!--
       <el-col :span="12">
         <img :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream.">
       </el-col>
+-->
     </el-row>
     <el-dialog :visible.sync="dialogVisible" title="随便看">
       <img :src="ewizardClap" class="pan-img">
@@ -23,13 +25,12 @@
 </template>
 
 <script>
-import errGif from '../../assets/401_images/401.gif'
 
 export default {
   name: 'Page401',
   data() {
     return {
-      errGif: errGif + '?' + +new Date(),
+      //errGif: errGif + '?' + +new Date(),
       ewizardClap: 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646',
       dialogVisible: false
     }

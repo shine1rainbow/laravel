@@ -1,7 +1,7 @@
 export default {
-    "systemName": "BI",
-    "systemMiniName": "BI",
-    "company": "pheicloud xxxxx",
+    "systemName": "Waiterx",
+    "systemMiniName": "waiterx",
+    "company": "waiterx xxxxx",
     "logout": "注销",
     "profile": "设置",
     "loginSuccess": "登录成功",

@@ -1,7 +1,7 @@
 export default {
-    "systemName": "BI System",
-    "systemMiniName": "BI",
-    "company": "pheicloud",
+    "systemName": "Waiterx",
+    "systemMiniName": "waiterx",
+    "company": "waiterx xxxxx",
     "logout": "Log out",
     "profile": "Profile",
     "loginSuccess": "success",

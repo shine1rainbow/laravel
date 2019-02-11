@@ -38,9 +38,18 @@ class UpdateJob
      */
     public function handle()
     {
+        if (is_null($this->params['business_hour'])) {
+            $this->params['business_hour'] = [];
+        }
+
         if (isset($this->params['business_hour'])) {
             $this->params['business_hour'] = json_encode($this->params['business_hour']);
         }
+
+        if (isset($this->params['images'])) {
+            $this->params['images'] = implode(",", $this->params['images']);
+        }
+
         $flag = TableModels\Shop::where('id', '=', $this->id)
             ->update($this->params);
 

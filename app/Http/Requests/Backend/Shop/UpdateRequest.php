@@ -29,7 +29,7 @@ class UpdateRequest extends FormRequest
             'restaurant_logo' => 'string',
             'restaurant_background' => 'string',
             'food_type' => 'string',
-            'city_id' => 'string',
+            'city_id' => 'integer',
             'email' => 'email',
             'mobile' => 'string',
             'landline' => 'string',
@@ -42,7 +42,7 @@ class UpdateRequest extends FormRequest
             'introduction' => 'string',
             'remind' => 'string',
             'activity' => 'string',
-            'business_hour' => 'array',
+            'business_hour' => 'nullable|array',
         ];
     }
 }
