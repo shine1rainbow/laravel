@@ -12,15 +12,17 @@ class ShopJob
     use Dispatchable, Queueable;
 
     private $id;
+    private $city_id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(int $id)
+    public function __construct($params)
     {
-        $this->id = $id;
+        $this->id = $params['id'];
+        $this->city_id = $params['city_id'];
     }
 
     /**
@@ -30,7 +32,18 @@ class ShopJob
      */
     public function handle()
     {
-        $shops = Shop::where('shop_tag_id', '=', $this->id)->get();
+        if (is_null($this->city_id)) {
+
+            $shops = Shop::where('shop_tag_id', '=', $this->id)->get();
+
+        } else {
+
+            $shops = Shop::where([
+                ['shop_tag_id', '=', $this->id],
+                ['city_id', '=', $this->city_id],
+            ])->get();
+
+        }
 
         if (is_null($shops)) {
 

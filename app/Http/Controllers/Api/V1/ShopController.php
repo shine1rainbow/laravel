@@ -85,7 +85,8 @@ class ShopController extends Controller
     //推荐店铺
     public function recommend()
     {
-        $response = $this->dispatch(new ShopJobs\RecommendJob());
+        $city_id = request()->input('city_id');
+        $response = $this->dispatch(new ShopJobs\RecommendJob($city_id));
         return $response;
     }
 }

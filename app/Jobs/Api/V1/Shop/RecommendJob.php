@@ -11,14 +11,16 @@ class RecommendJob
 {
     use Dispatchable, Queueable;
 
+    private $city_id;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($city_id)
     {
-        //
+        $this->city_id = $city_id;
     }
 
     /**
@@ -28,9 +30,21 @@ class RecommendJob
      */
     public function handle()
     {
-        $shops = Shop::where('is_recommend', '=', 1)
-            ->get()
+        if (is_null($this->city_id)) {
+
+            $shops = Shop::where('is_recommend', '=', 1)
+                ->get()
+                ->toArray();
+
+        } else {
+
+            $shops = Shop::where([
+                ['is_recommend', '=', 1],
+                ['city_id', '=', $this->city_id]
+            ])->get()
             ->toArray();
+
+        }
 
         if (is_null($shops)) {
 

@@ -21,7 +21,10 @@ class ShopTagController extends Controller
 
     public function shops($id)
     {
-        $response = $this->dispatch(new ShopTagJobs\ShopJob($id));
+        $city_id = request()->input('city_id');
+        $params['id'] = $id;
+        $params['city_id'] = $city_id;
+        $response = $this->dispatch(new ShopTagJobs\ShopJob($params));
         return $response;
     }
 }
