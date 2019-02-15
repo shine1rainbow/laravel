@@ -35,8 +35,7 @@ class SearchJob
     public function handle()
     {
         //店铺名称关键字
-        $shops = Shop::select('id', 'restaurant_name as name')
-            ->where('restaurant_name', 'like', "%$this->keyword%")
+        $shops = Shop::where('restaurant_name', 'like', "%$this->keyword%")
             ->get()
             ->toArray();
 
@@ -52,8 +51,7 @@ class SearchJob
 
                 if (!empty($shopIds)) {
 
-                    $shopsByMenuName = Shop::select('id', 'restaurant_name as name')
-                        ->whereIn('id', $shopIds)
+                    $shopsByMenuName = Shop::whereIn('id', $shopIds)
                         ->get()
                         ->toArray();
                 }
